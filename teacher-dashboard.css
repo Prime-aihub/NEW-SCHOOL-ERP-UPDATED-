@@ -871,3 +871,42 @@ img{
     margin-left:0;
 }
 }
+/* Teacher Menu Button */
+
+.menu-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 16px;
+    background:#2563eb;
+    color:#fff;
+    text-decoration:none;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.menu-btn:hover{
+    background:#1d4ed8;
+}
+
+.menu-btn i{
+    font-size:16px;
+}
+
+@media (max-width:768px){
+
+.menu-btn span{
+    display:none;
+}
+
+.menu-btn{
+    width:44px;
+    height:44px;
+    padding:0;
+    justify-content:center;
+    border-radius:50%;
+}
+
+}
