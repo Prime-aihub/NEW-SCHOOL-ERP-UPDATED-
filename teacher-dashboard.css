@@ -733,19 +733,9 @@ img{
 /* Mobile */
 @media (max-width:576px){
 
+    /* Hide sidebar completely */
     .sidebar{
-        display:block;
-        position:fixed;
-        top:0;
-        left:-270px;
-        width:260px;
-        height:100vh;
-        z-index:9999;
-        transition:left .3s ease;
-    }
-
-    .sidebar.active{
-        left:0;
+        display:none;
     }
 
     .main-content{
@@ -815,16 +805,29 @@ img{
     vertical-align:middle;
     flex-shrink:0;
 }
-
-.menu-icon{
-    width:22px;
-    height:22px;
-    object-fit:contain;
-    margin-right:14px;
-    vertical-align:middle;
-    flex-shrink:0;
+.menu-toggle{
+    display:none;
+    position:absolute;
+    top:25px;
+    right:20px;
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:12px;
+    background:#1f2a44;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+    z-index:1001;
 }
 
+@media (max-width:768px){
+
+.menu-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
 
 .sidebar{
     position:fixed;
@@ -844,6 +847,7 @@ img{
     margin-left:0;
 }
 }
+
 /* Teacher Menu Button */
 
 .menu-btn{
