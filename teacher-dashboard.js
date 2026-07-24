@@ -515,5 +515,6 @@ document.addEventListener(
     }
 );
 window.toggleSidebar = function () {
+    console.log("MENU CLICKED");
     document.querySelector(".sidebar").classList.toggle("active");
 };
