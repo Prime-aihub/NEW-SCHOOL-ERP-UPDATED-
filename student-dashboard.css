@@ -1240,3 +1240,42 @@ table{
     margin-right:14px;
     vertical-align:middle;
 }
+
+/* ==========================================
+   STUDENT MOBILE MENU BUTTON
+========================================== */
+
+.mobile-menu-btn{
+
+    display:none;
+
+}
+
+.mobile-menu-btn img{
+
+    width:42px;
+    height:42px;
+    object-fit:contain;
+    cursor:pointer;
+    transition:.25s;
+
+}
+
+.mobile-menu-btn img:hover{
+
+    transform:scale(1.08);
+
+}
+
+@media(max-width:768px){
+
+.mobile-menu-btn{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-right:12px;
+
+}
+
+}
