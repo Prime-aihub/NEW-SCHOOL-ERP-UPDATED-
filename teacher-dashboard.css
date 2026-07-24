@@ -733,9 +733,19 @@ img{
 /* Mobile */
 @media (max-width:576px){
 
-    /* Hide sidebar completely */
     .sidebar{
-        display:none;
+        display:block;
+        position:fixed;
+        top:0;
+        left:-270px;
+        width:260px;
+        height:100vh;
+        z-index:9999;
+        transition:left .3s ease;
+    }
+
+    .sidebar.active{
+        left:0;
     }
 
     .main-content{
