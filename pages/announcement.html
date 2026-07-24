@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Communication Center | MAIAMMA Teacher Hub</title>
+
+  <link rel="stylesheet" href="announcement.css">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       SIDEBAR
+  ========================== -->
+
+  <aside class="sidebar">
+
+    <div class="brand">
+      <i class="fa-solid fa-graduation-cap"></i>
+
+      <div>
+        <b>MAIAMMA</b>
+        <small>Teacher Hub</small>
+      </div>
+    </div>
+
+    <nav>
+
+      <li>
+        <a href="../teacher-dashboard.html">
+          <i class="fas fa-home"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <a href="attendance.html">
+        <i class="fa-solid fa-calendar-check"></i>
+        Attendance
+      </a>
+
+      <a href="homework.html">
+        <i class="fa-solid fa-book-open"></i>
+        Homework
+      </a>
+
+      <a href="assignments.html">
+        <i class="fa-solid fa-clipboard-list"></i>
+        Assignments
+      </a>
+
+      <a class="active" href="announcement.html">
+        <i class="fa-solid fa-bullhorn"></i>
+        Communication Center
+      </a>
+
+      <a href="students.html">
+        <i class="fa-solid fa-users"></i>
+        Students
+      </a>
+
+      <a href="reports.html">
+        <i class="fa-solid fa-chart-line"></i>
+        Reports
+      </a>
+
+      <li>
+        <a href="../teacher-dashboard.html">
+          <i class="fas fa-arrow-left"></i>
+          <span>Back Dashboard</span>
+        </a>
+      </li>
+
+    </nav>
+
+  </aside>
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main>
+
+    <header>
+
+      <div>
+
+        <p class="eyebrow">
+          PRIMEAIHUB SCHOOL ERP
+        </p>
+
+        <h1>Communication Center</h1>
+
+        <p class="muted">
+          Create and publish school announcements,
+          notices, holidays, events and exam updates.
+        </p>
+
+      </div>
+
+    </header>
+
+    <!-- =========================
+         FORM CARD
+    ========================== -->
+
+    <section class="card">
+
+      <div class="card-title">
+
+        <h2>Create Announcement</h2>
+
+      </div>
+
+      <form id="announcementForm">
+
+        <div class="form-grid">
+
+          <!-- Title -->
+
+          <div class="form-group full">
+
+            <label>Announcement Title</label>
+
+            <input
+              type="text"
+              id="title"
+              placeholder="Enter announcement title"
+              required>
+
+          </div>
+
+          <!-- Category -->
+
+          <div class="form-group">
+
+            <label>Category</label>
+
+            <select id="category">
+
+              <option>Notice</option>
+              <option>Holiday</option>
+              <option>Exam</option>
+              <option>PTM</option>
+              <option>Event</option>
+              <option>Emergency</option>
+
+            </select>
+
+          </div>
+
+          <!-- Priority -->
+
+          <div class="form-group">
+
+            <label>Priority</label>
+
+            <select id="priority">
+
+              <option>Normal</option>
+              <option>High</option>
+              <option>Urgent</option>
+
+            </select>
+
+          </div>
+
+          <!-- Status -->
+
+          <div class="form-group">
+
+            <label>Status</label>
+
+            <select id="status">
+
+              <option>Published</option>
+              <option>Draft</option>
+
+            </select>
+
+          </div>
+
+          <!-- Created By -->
+
+          <div class="form-group">
+
+            <label>Created By</label>
+
+            <input
+              type="text"
+              id="createdBy"
+              value="Admin"
+              readonly>
+
+          </div>
+
+          <!-- Description -->
+
+          <div class="form-group full">
+
+            <label>Description</label>
+
+            <textarea
+              id="description"
+              rows="6"
+              placeholder="Write announcement details..."
+              required></textarea>
+
+          </div>
+
+        </div>
+
+        <!-- Audience -->
+
+<div class="form-group">
+
+    <label>Audience</label>
+
+    <select id="audience">
+
+        <option>All</option>
+        <option>Students/Parents</option>
+        <option>Teachers</option>
+
+    </select>
+
+</div>
+
+<!-- Class -->
+
+<div class="form-group">
+
+    <label>Class</label>
+
+    <select id="className">
+
+        <option>All Classes</option>
+
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+
+    </select>
+
+</div>
+
+<!-- Section -->
+
+<div class="form-group">
+
+    <label>Section</label>
+
+    <select id="section">
+
+        <option>All Sections</option>
+
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+        <option>E</option>
+
+    </select>
+
+</div>
+
+
+</div>
+
+        <div class="button-area">
+
+          <button
+            type="submit"
+            class="primary">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+            Save Announcement
+
+          </button>
+
+          <button
+            type="reset">
+
+            <i class="fa-solid fa-rotate-left"></i>
+
+            Clear
+
+          </button>
+
+        </div>
+
+      </form>
+
+      <p id="message"></p>
+
+    </section>
+
+    <!-- =========================
+         RECENT ANNOUNCEMENTS
+    ========================== -->
+
+    <section class="card">
+
+      <div class="card-title">
+
+        <h2>Recent Announcements</h2>
+
+      </div>
+
+      <div
+        id="announcementList"
+        class="announcement-list">
+
+        <!-- Loaded from Firestore -->
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script type="module" src="announcement.js"></script>
+
+</body>
+</html>

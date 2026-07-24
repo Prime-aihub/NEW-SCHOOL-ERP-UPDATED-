@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1">
+
+<title>
+Gallery Management | MAIAMMA Admin Hub
+</title>
+
+<link rel="stylesheet" href="announcement.css">
+<link rel="stylesheet" href="particles.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ===========================
+     SIDEBAR
+============================ -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <i class="fa-solid fa-graduation-cap"></i>
+
+        <div>
+
+            <b>MAIAMMA</b>
+
+            <small>Admin Hub</small>
+
+        </div>
+
+    </div>
+
+    <nav>
+
+        <li>
+
+            <a href="../admin-dashboard.html">
+
+                <i class="fas fa-home"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+        </li>
+
+        <a href="students.html">
+
+            <i class="fa-solid fa-user-graduate"></i>
+
+            Students
+
+        </a>
+
+        <a href="teachers.html">
+
+            <i class="fa-solid fa-chalkboard-user"></i>
+
+            Teachers
+
+        </a>
+
+        <a href="attendance.html">
+
+            <i class="fa-solid fa-calendar-check"></i>
+
+            Attendance
+
+        </a>
+
+        <a href="announcement.html">
+
+            <i class="fa-solid fa-bullhorn"></i>
+
+            Communication Center
+
+        </a>
+
+        <a class="active"
+           href="gallery.html">
+
+            <i class="fa-solid fa-images"></i>
+
+            Gallery
+
+        </a>
+
+        <a href="reports.html">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            Reports
+
+        </a>
+
+        <li>
+
+            <a href="../admin-dashboard.html">
+
+                <i class="fas fa-arrow-left"></i>
+
+                <span>Back Dashboard</span>
+
+            </a>
+
+        </li>
+
+    </nav>
+
+</aside>
+
+<!-- ===========================
+     MAIN
+============================ -->
+
+<main>
+
+<header>
+
+    <div>
+
+        <p class="eyebrow">
+
+            PRIMEAIHUB SCHOOL ERP
+
+        </p>
+
+        <h1>
+
+            Gallery Management
+
+        </h1>
+
+        <p class="muted">
+
+            Create academic year galleries,
+            manage events and organize
+            school photographs.
+
+        </p>
+
+    </div>
+
+</header>
+
+<!-- ===========================
+     CREATE GALLERY
+============================ -->
+
+<section class="card">
+
+<div class="card-title">
+
+<h2>Create Gallery Album</h2>
+
+</div>
+
+<form id="galleryForm">
+
+<div class="form-grid">
+
+<!-- Academic Year -->
+
+<div class="form-group">
+
+<label>
+
+Academic Year
+
+</label>
+
+<select id="year">
+
+<option>2026-27</option>
+
+<option>2027-28</option>
+
+<option>2028-29</option>
+
+<option>2029-30</option>
+
+</select>
+
+</div>
+
+<!-- Event -->
+
+<div class="form-group">
+
+<label>
+
+Event
+
+</label>
+
+<select id="event">
+
+<option>Annual Day</option>
+
+<option>Green Day</option>
+
+<option>Teachers Day</option>
+
+<option>Ganesh Chaturthi</option>
+
+<option>Independence Day</option>
+
+<option>Republic Day</option>
+
+<option>Sports Day</option>
+
+<option>Science Exhibition</option>
+
+<option>PTM</option>
+
+<option>Picnic</option>
+
+<option>Christmas</option>
+
+<option>Diwali</option>
+
+<option>Farewell</option>
+
+<option>Other</option>
+
+</select>
+
+</div>
+
+<!-- Class -->
+
+<div class="form-group">
+
+<label>
+
+Class
+
+</label>
+
+<select id="className">
+
+<option>All Classes</option>
+
+<option>Nursery</option>
+
+<option>LKG</option>
+
+<option>UKG</option>
+
+<option>1</option>
+
+<option>2</option>
+
+<option>3</option>
+
+<option>4</option>
+
+<option>5</option>
+
+<option>6</option>
+
+<option>7</option>
+
+<option>8</option>
+
+<option>9</option>
+
+<option>10</option>
+
+<option>11</option>
+
+<option>12</option>
+
+</select>
+
+</div>
+
+<!-- Photo URL -->
+
+<div class="form-group full">
+
+<label>
+
+Photo URL
+
+</label>
+
+<input
+type="url"
+id="imageUrl"
+placeholder="https://yourwebsite.com/gallery/photo1.jpg">
+
+</div>
+
+<!-- Photo Title -->
+
+<div class="form-group full">
+
+<label>
+
+Photo Title
+
+</label>
+
+<input
+type="text"
+id="title"
+placeholder="Enter photo title">
+
+</div>
+
+<!-- Save Button -->
+
+</div>
+
+<div class="button-area">
+
+    <button
+        type="submit"
+        class="primary">
+
+        <i class="fa-solid fa-floppy-disk"></i>
+
+        Save Photo
+
+    </button>
+
+    <button
+        type="reset">
+
+        <i class="fa-solid fa-rotate-left"></i>
+
+        Clear
+
+    </button>
+
+</div>
+
+</form>
+
+<p id="message"></p>
+
+</section>
+
+<!-- ===========================
+     GALLERY ALBUMS
+============================ -->
+
+<section class="card">
+
+    <div class="card-title">
+
+        <h2>Gallery Albums</h2>
+
+    </div>
+
+    <div
+        id="galleryGrid"
+        class="gallery-grid">
+
+        <!-- Gallery cards loaded from Firebase -->
+
+        <!-- Example Card -->
+
+        <!--
+
+        <div class="gallery-card">
+
+            <img
+                src="https://yourwebsite.com/gallery/photo1.jpg"
+                alt="Gallery Photo">
+
+            <div class="gallery-info">
+
+                <h3>Annual Day</h3>
+
+                <p>
+                    Academic Year :
+                    2026-27
+                </p>
+
+                <p>
+                    Class :
+                    All Classes
+                </p>
+
+                <p>
+                    Annual Day Group Photo
+                </p>
+
+                <div class="gallery-buttons">
+
+                    <button class="edit-btn">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Edit
+
+                    </button>
+
+                    <button class="delete-btn">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        -->
+
+    </div>
+
+</section>
+
+  </main>
+
+  <!-- ===========================
+       GALLERY JAVASCRIPT
+  ============================ -->
+
+  <script type="module" src="gallery.js"></script>
+
+</body>
+</html>
