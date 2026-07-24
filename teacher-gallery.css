@@ -1,0 +1,325 @@
+/* =========================================
+   TEACHER GALLERY
+========================================= */
+
+.gallery-filters{
+
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+align-items:center;
+margin-top:20px;
+
+}
+
+.gallery-filters select{
+
+padding:12px 15px;
+border:none;
+border-radius:10px;
+background:#ffffff;
+font-size:15px;
+font-family:Poppins,sans-serif;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+outline:none;
+min-width:220px;
+
+}
+
+
+/* =========================================
+   GALLERY GRID
+========================================= */
+
+.gallery-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+gap:20px;
+margin-top:25px;
+
+}
+
+
+/* =========================================
+   GALLERY CARD
+========================================= */
+
+.gallery-card{
+
+background:#ffffff;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+transition:.35s;
+cursor:pointer;
+
+}
+
+.gallery-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.gallery-card img{
+
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+display:block;
+
+}
+
+.gallery-content{
+
+padding:15px;
+
+}
+
+.gallery-content h3{
+
+margin-bottom:10px;
+font-size:18px;
+
+}
+
+.gallery-content p{
+
+font-size:14px;
+margin:5px 0;
+color:#666;
+
+}
+
+
+/* =========================================
+   LIGHTBOX
+========================================= */
+
+.lightbox{
+
+display:none;
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.92);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+padding:30px;
+
+}
+
+.lightbox.active{
+
+display:flex;
+
+}
+
+.lightbox img{
+
+max-width:90%;
+max-height:80vh;
+border-radius:15px;
+box-shadow:0 0 30px rgba(255,255,255,.25);
+
+}
+
+.lightbox-title{
+
+margin-top:20px;
+font-size:22px;
+font-weight:600;
+color:#ffffff;
+text-align:center;
+
+}
+
+.close-lightbox{
+
+position:absolute;
+top:20px;
+right:35px;
+font-size:45px;
+color:#ffffff;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.close-lightbox:hover{
+
+transform:scale(1.15);
+
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.action-btn{
+
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:#2563eb;
+color:#ffffff;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.action-btn:hover{
+
+background:#1d4ed8;
+
+}
+
+
+/* =========================================
+   FLOATING BUTTONS
+========================================= */
+
+.floating-calendar,
+.floating-store{
+
+position:fixed;
+right:25px;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#2563eb;
+color:#ffffff;
+font-size:24px;
+box-shadow:0 8px 20px rgba(0,0,0,.25);
+text-decoration:none;
+transition:.3s;
+z-index:999;
+
+}
+
+.floating-calendar{
+
+bottom:100px;
+
+}
+
+.floating-store{
+
+bottom:25px;
+
+}
+
+.floating-calendar:hover,
+.floating-store:hover{
+
+transform:scale(1.08);
+
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark .gallery-card{
+
+background:#1f2937;
+color:#ffffff;
+
+}
+
+body.dark .gallery-content p{
+
+color:#d1d5db;
+
+}
+
+body.dark .gallery-filters select{
+
+background:#374151;
+color:#ffffff;
+
+}
+
+body.dark .action-btn{
+
+background:#3b82f6;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:768px){
+
+.gallery-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.gallery-filters{
+
+flex-direction:column;
+align-items:stretch;
+
+}
+
+.gallery-filters select{
+
+width:100%;
+
+}
+
+.action-btn{
+
+width:100%;
+
+}
+
+.lightbox img{
+
+max-width:96%;
+max-height:70vh;
+
+}
+
+.lightbox-title{
+
+font-size:18px;
+
+}
+
+.floating-calendar,
+.floating-store{
+
+width:55px;
+height:55px;
+font-size:20px;
+
+}
+
+}
+
+
+@media(max-width:500px){
+
+.gallery-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>MAIAMMA School Hub | Teacher Gallery</title>
+
+<!-- Dashboard CSS -->
+<link rel="stylesheet"
+href="teacher-dashboard.css">
+
+<!-- Gallery CSS -->
+<link rel="stylesheet"
+href="teacher-gallery.css">
+
+<!-- Particle Effect -->
+<link rel="stylesheet"
+href="particles.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- PARTICLES -->
+<!-- ========================================= -->
+
+<div id="particles"></div>
+
+<!-- ========================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="sidebar">
+
+<div class="sidebar-header">
+
+<div class="logo-box">
+
+<i class="fas fa-chalkboard-teacher"></i>
+
+</div>
+
+<div>
+
+<h2>MAIAMMA</h2>
+
+<p>Teacher Hub</p>
+
+</div>
+
+</div>
+
+<ul class="sidebar-menu">
+
+<li>
+
+<a href="teacher-dashboard.html">
+
+<i class="fas fa-home"></i>
+
+<span>Dashboard</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="teacher-profile.html">
+
+<i class="fas fa-user"></i>
+
+<span>Profile</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="pages/attendance.html">
+
+<i class="fas fa-calendar-check"></i>
+
+<span>Attendance</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="pages/homework.html">
+
+<i class="fas fa-book-open"></i>
+
+<span>Homework</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="pages/assignments.html">
+
+<i class="fas fa-file-signature"></i>
+
+<span>Assignments</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="pages/exams.html">
+
+<i class="fas fa-file-alt"></i>
+
+<span>Exams</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="pages/students.html">
+
+<i class="fas fa-users"></i>
+
+<span>Students</span>
+
+</a>
+
+</li>
+
+<li class="active">
+
+<a href="teacher-gallery.html">
+
+<i class="fas fa-images"></i>
+
+<span>Gallery</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="pages/reports.html">
+
+<i class="fas fa-chart-line"></i>
+
+<span>Reports</span>
+
+</a>
+
+</li>
+
+<li>
+
+<a href="pages/ai-assistant.html">
+
+<i class="fas fa-robot"></i>
+
+<span>AI Assistant</span>
+
+</a>
+
+</li>
+
+</ul>
+
+</aside>
+
+<!-- ========================================= -->
+<!-- MAIN CONTENT -->
+<!-- ========================================= -->
+
+<main class="main-content">
+
+<!-- ========================================= -->
+<!-- TOPBAR -->
+<!-- ========================================= -->
+
+<header class="topbar">
+
+<div>
+
+<h1>
+
+<i class="fas fa-images"></i>
+
+School Gallery
+
+</h1>
+
+<p>
+
+School Events • Activities • Functions • Memories
+
+</p>
+
+</div>
+
+<div class="topbar-right">
+
+<button
+id="themeToggle"
+class="theme-btn">
+
+<i class="fas fa-moon"></i>
+
+</button>
+
+<div class="teacher-profile">
+
+<img
+id="topTeacherPhoto"
+src="images/default-teacher.jpg">
+
+<div>
+
+<h4 id="topTeacherName">
+
+Loading...
+
+</h4>
+
+<span id="topTeacherClass">
+
+Loading...
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- ========================================= -->
+<!-- GALLERY INTRO -->
+<!-- ========================================= -->
+
+<section class="dashboard-card">
+
+<div class="card-header">
+
+<h3>
+
+<i class="fas fa-camera-retro"></i>
+
+School Photo Gallery
+
+</h3>
+
+<i class="fas fa-images"></i>
+
+</div>
+
+<p>
+
+Browse photos uploaded by the school administration including Annual Day, Sports Day, Science Exhibition, Classroom Activities, Competitions, Cultural Programs and other memorable events.
+
+</p>
+
+</section>
+
+<!-- ========================================= -->
+<!-- FILTERS -->
+<!-- ========================================= -->
+
+<section class="dashboard-card">
+
+<div class="gallery-filters">
+
+<select id="yearFilter">
+
+<option value="">
+
+All Academic Years
+
+</option>
+
+</select>
+
+<select id="eventFilter">
+
+<option value="">
+
+All Events
+
+</option>
+
+</select>
+
+<button
+id="clearFilters"
+class="action-btn">
+
+<i class="fas fa-filter-circle-xmark"></i>
+
+Clear Filters
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- GALLERY GRID -->
+<!-- ========================================= -->
+
+<section
+class="gallery-grid"
+id="galleryGrid">
+
+<!-- Photos loaded from Firestore -->
+
+</section>
+
+<!-- ========================================= -->
+<!-- IMAGE LIGHTBOX -->
+<!-- ========================================= -->
+
+<div id="lightbox" class="lightbox">
+
+    <span id="closeLightbox"
+          class="close-lightbox">
+
+        &times;
+
+    </span>
+
+    <img id="lightboxImage"
+         src=""
+         alt="Gallery Photo">
+
+    <div id="lightboxTitle"
+         class="lightbox-title"></div>
+
+</div>
+
+
+<!-- ========================================= -->
+<!-- FLOATING ATTENDANCE BUTTON -->
+<!-- ========================================= -->
+
+<a href="pages/attendance.html"
+   class="floating-calendar"
+   title="Attendance">
+
+    <i class="fas fa-calendar-check"></i>
+
+</a>
+
+
+<!-- ========================================= -->
+<!-- FLOATING STUDENTS BUTTON -->
+<!-- ========================================= -->
+
+<a href="pages/students.html"
+   class="floating-store"
+   title="Students">
+
+    <i class="fas fa-users"></i>
+
+</a>
+
+
+<!-- ========================================= -->
+<!-- PARTICLES -->
+<!-- ========================================= -->
+
+<script src="particles.js"></script>
+
+
+<!-- ========================================= -->
+<!-- TEACHER DASHBOARD -->
+<!-- ========================================= -->
+
+<script type="module"
+        src="student-gallery.js"></script>
+
+
+<!-- ========================================= -->
+<!-- TEACHER GALLERY -->
+<!-- ========================================= -->
+
+<script type="module"
+        src="teacher-gallery.js"></script>
+
+</main>
+
+</body>
+
+</html>

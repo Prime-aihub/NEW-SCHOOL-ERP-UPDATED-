@@ -1,0 +1,273 @@
+/* =========================================
+   STUDENT GALLERY
+========================================= */
+
+.gallery-filters{
+
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+align-items:center;
+margin-top:20px;
+
+}
+
+.gallery-filters select{
+
+padding:12px 15px;
+border:none;
+border-radius:10px;
+font-size:15px;
+font-family:Poppins,sans-serif;
+background:#ffffff;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+outline:none;
+min-width:220px;
+
+}
+
+.gallery-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+gap:20px;
+margin-top:25px;
+
+}
+
+
+/* =========================================
+   GALLERY CARD
+========================================= */
+
+.gallery-card{
+
+background:#ffffff;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+transition:.35s;
+cursor:pointer;
+position:relative;
+
+}
+
+.gallery-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.gallery-card img{
+
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+display:block;
+
+}
+
+.gallery-content{
+
+padding:15px;
+
+}
+
+.gallery-content h3{
+
+font-size:18px;
+margin-bottom:10px;
+
+}
+
+.gallery-content p{
+
+font-size:14px;
+margin:4px 0;
+color:#666;
+
+}
+
+
+/* =========================================
+   LIGHTBOX
+========================================= */
+
+.lightbox{
+
+display:none;
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.92);
+z-index:99999;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:30px;
+
+}
+
+.lightbox.active{
+
+display:flex;
+
+}
+
+.lightbox img{
+
+max-width:90%;
+max-height:80vh;
+border-radius:15px;
+box-shadow:0 0 30px rgba(255,255,255,.3);
+
+}
+
+.lightbox-title{
+
+margin-top:20px;
+font-size:22px;
+font-weight:600;
+color:#fff;
+text-align:center;
+
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.close-lightbox{
+
+position:absolute;
+top:25px;
+right:35px;
+font-size:45px;
+color:#fff;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.close-lightbox:hover{
+
+transform:scale(1.15);
+
+}
+
+
+/* =========================================
+   FILTER BUTTON
+========================================= */
+
+.action-btn{
+
+padding:12px 22px;
+border:none;
+border-radius:10px;
+background:#2563eb;
+color:#fff;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+
+}
+
+.action-btn:hover{
+
+background:#1d4ed8;
+
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark .gallery-card{
+
+background:#1f2937;
+color:#fff;
+
+}
+
+body.dark .gallery-content p{
+
+color:#d1d5db;
+
+}
+
+body.dark .gallery-filters select{
+
+background:#374151;
+color:#fff;
+
+}
+
+body.dark .action-btn{
+
+background:#3b82f6;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:768px){
+
+.gallery-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.gallery-filters{
+
+flex-direction:column;
+align-items:stretch;
+
+}
+
+.gallery-filters select{
+
+width:100%;
+
+}
+
+.action-btn{
+
+width:100%;
+
+}
+
+.lightbox img{
+
+max-width:96%;
+max-height:70vh;
+
+}
+
+.lightbox-title{
+
+font-size:18px;
+
+}
+
+}
+
+
+@media(max-width:500px){
+
+.gallery-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}

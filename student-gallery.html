@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MAIAMMA School Hub | Gallery</title>
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="student-dashboard.css">
+
+    <!-- Gallery CSS -->
+    <link rel="stylesheet" href="student-gallery.css">
+
+    <!-- Particle Effect -->
+    <link rel="stylesheet" href="particles.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- PARTICLES -->
+<!-- ========================================= -->
+
+<div id="particles"></div>
+
+<!-- ========================================= -->
+<!-- SIDEBAR -->
+<!-- ========================================= -->
+
+<aside class="sidebar">
+
+    <div class="sidebar-header">
+
+        <div class="logo-box">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+
+        <div>
+            <h2>MAIAMMA</h2>
+            <p>Student Hub</p>
+        </div>
+
+    </div>
+
+    <ul class="sidebar-menu">
+
+        <li>
+            <a href="student-dashboard.html">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="profile.html">
+                <i class="fas fa-user-graduate"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="calendar.html">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Academic Calendar</span>
+            </a>
+        </li>
+
+        <li class="active">
+            <a href="student-gallery.html">
+                <i class="fas fa-images"></i>
+                <span>Gallery</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="homework.html">
+                <i class="fas fa-book"></i>
+                <span>Homework</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="assignments.html">
+                <i class="fas fa-tasks"></i>
+                <span>Assignments</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="results.html">
+                <i class="fas fa-chart-line"></i>
+                <span>Results</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="ai-tutor.html">
+                <i class="fas fa-brain"></i>
+                <span>AI Tutor</span>
+            </a>
+        </li>
+
+    </ul>
+
+</aside>
+
+<!-- ========================================= -->
+<!-- MAIN -->
+<!-- ========================================= -->
+
+<main class="main-content">
+
+<!-- ========================================= -->
+<!-- TOPBAR -->
+<!-- ========================================= -->
+
+<header class="topbar">
+
+    <div>
+
+        <h1>
+            <i class="fas fa-images"></i>
+            School Gallery
+        </h1>
+
+        <p>
+            Memories • Events • Activities • Celebrations
+        </p>
+
+    </div>
+
+    <div class="topbar-right">
+
+        <!-- Announcement -->
+
+        <div class="announcement-btn"
+             id="announcementBtn">
+
+            <img src="images/announcement.png"
+                 alt="Announcement">
+
+            <span id="announcementCount">
+
+                0
+
+            </span>
+
+        </div>
+
+        <div class="announcement-popup"
+             id="announcementPopup">
+
+            <h4>
+
+                📢 Latest Announcements
+
+            </h4>
+
+            <div id="announcementList">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+        <!-- Theme -->
+
+        <button id="themeToggle"
+                class="theme-btn">
+
+            <i class="fas fa-moon"></i>
+
+        </button>
+
+        <!-- Student -->
+
+        <div class="student-profile-mini">
+
+            <img
+                id="topStudentPhoto"
+                src="images/student001.jpg">
+
+            <div>
+
+                <h4 id="topStudentName">
+
+                    Loading...
+
+                </h4>
+
+                <span id="topStudentClass">
+
+                    Loading...
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ========================================= -->
+<!-- GALLERY HEADER -->
+<!-- ========================================= -->
+
+<section class="dashboard-card">
+
+    <div class="card-header">
+
+        <h3>
+
+            <i class="fas fa-camera-retro"></i>
+
+            School Photo Gallery
+
+        </h3>
+
+        <i class="fas fa-images"></i>
+
+    </div>
+
+    <p>
+
+        Explore school events, annual day,
+        sports, cultural activities, STEM labs,
+        competitions and memorable moments.
+
+    </p>
+
+</section>
+
+<!-- ========================================= -->
+<!-- FILTERS -->
+<!-- ========================================= -->
+
+<section class="dashboard-card">
+
+<div class="gallery-filters">
+
+<select id="yearFilter">
+
+<option value="">
+
+All Academic Years
+
+</option>
+
+</select>
+
+<select id="eventFilter">
+
+<option value="">
+
+All Events
+
+</option>
+
+</select>
+
+<button
+id="clearFilters"
+class="action-btn">
+
+<i class="fas fa-filter-circle-xmark"></i>
+
+Clear Filters
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- GALLERY GRID -->
+<!-- ========================================= -->
+
+<section
+class="gallery-grid"
+id="galleryGrid">
+
+<!-- Photos loaded by student-gallery.js -->
+
+</section>
+
+<section
+class="gallery-grid"
+id="galleryGrid">
+
+<!-- Photos loaded by student-gallery.js -->
+
+</section>
+
+<!-- ========================================= -->
+<!-- IMAGE LIGHTBOX -->
+<!-- ========================================= -->
+
+<div id="lightbox" class="lightbox">
+
+    <span id="closeLightbox" class="close-lightbox">
+
+        &times;
+
+    </span>
+
+    <img id="lightboxImage"
+         src=""
+         alt="Gallery Photo">
+
+    <div id="lightboxTitle"
+         class="lightbox-title">
+
+    </div>
+
+</div>
+
+
+<!-- ========================================= -->
+<!-- FLOATING STORE BUTTON -->
+<!-- ========================================= -->
+
+<a href="pages/store.html"
+   class="floating-store"
+   title="School Store">
+
+    <img src="images/store.jpg"
+         alt="Store">
+
+</a>
+
+
+<!-- ========================================= -->
+<!-- FLOATING CALENDAR BUTTON -->
+<!-- ========================================= -->
+
+<a href="pages/calendar.html"
+   class="floating-calendar"
+   title="Academic Calendar">
+
+    <img src="images/calendar.jpg"
+         alt="Calendar">
+
+</a>
+
+
+<!-- ========================================= -->
+<!-- PARTICLE EFFECT -->
+<!-- ========================================= -->
+
+<script src="particles.js"></script>
+
+
+<!-- ========================================= -->
+<!-- STUDENT DASHBOARD -->
+<!-- ========================================= -->
+
+<script src="student-dashboard.js"></script>
+
+
+<!-- ========================================= -->
+<!-- GALLERY -->
+<!-- ========================================= -->
+
+<script type="module"
+        src="student-gallery.js"></script>
+
+
+<!-- ========================================= -->
+<!-- ATTENDANCE -->
+<!-- ========================================= -->
+
+<script type="module"
+        src="learner-attendance.js"></script>
+
+
+<!-- ========================================= -->
+<!-- ANNOUNCEMENTS -->
+<!-- ========================================= -->
+
+<script type="module"
+        src="js/announcement-widget.js"></script>
+
+
+</body>
+
+</html>
