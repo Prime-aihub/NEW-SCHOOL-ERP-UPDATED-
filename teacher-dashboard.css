@@ -807,9 +807,8 @@ img{
 }
 .menu-toggle{
     display:none;
-    position:absolute;
-    top:25px;
-    right:20px;
+    align-items:center;
+    justify-content:center;
     width:48px;
     height:48px;
     border:none;
@@ -818,15 +817,22 @@ img{
     color:#fff;
     font-size:22px;
     cursor:pointer;
-    z-index:1001;
+
+    position:fixed;
+    top:15px;
+    left:15px;
+
+    z-index:99999;
 }
+
+@media (max-width:768px){
 
 @media (max-width:768px){
 
 .menu-toggle{
     display:flex;
-    align-items:center;
-    justify-content:center;
+}
+
 }
 
 .sidebar{
