@@ -589,91 +589,75 @@ body{
     }
 }
 
-@media(max-width:576px){
-
-    .stats-grid{
-        grid-template-columns:1fr;
-    }
-
-    .main-content{
-        padding:20px;
-    }
-}
-
-/* ==========================================
-   MOBILE LANDSCAPE MODE
-   640px - 992px
-========================================== */
-
-@media screen and (max-width: 992px) and (orientation: landscape) {
-
-    body{
-        overflow-x:hidden;
-    }
-
-    .dashboard-container{
-        display:flex;
-    }
+@media (max-width:576px){
 
     .sidebar{
-        width:75px;
-        min-width:75px;
+        width:60px;
+        padding:12px 8px;
+    }
+
+    .sidebar-menu li a{
+        justify-content:center;
+        padding:14px 0;
+    }
+
+    .sidebar-menu li a i{
+        font-size:18px;
+    }
+
+    .sidebar span,
+    .sidebar-header{
+        display:none;
     }
 
     .main-content{
-        margin-left:75px;
-        width:calc(100% - 75px);
-        padding:20px;
+        margin-left:60px;
+        width:calc(100% - 60px);
+        padding:15px;
     }
 
     .topbar{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:20px;
-    }
-
-    .dashboard-header{
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        gap:20px;
-    }
-
-    .stats-grid{
-        display:grid;
-        grid-template-columns:repeat(4,1fr);
+        flex-direction:column;
+        align-items:flex-start;
         gap:15px;
     }
 
-    .stat-card{
-        min-height:170px;
-        padding:20px;
+    .topbar h1{
+        font-size:28px;
+        line-height:1.2;
     }
 
-    .dashboard-grid{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:20px;
-    }
-
-    .card{
+    .topbar-right{
         width:100%;
+        justify-content:space-between;
     }
 
     .admin-profile{
-        max-width:260px;
+        flex:1;
     }
 
-    table{
-        font-size:14px;
+    .stats-grid{
+        grid-template-columns:1fr;
+        gap:15px;
     }
 
-    .chart-container,
-    .calendar-container,
-    .recent-activity,
-    .quick-actions{
-        width:100%;
+    .dashboard-grid{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .dashboard-card{
+        padding:18px;
+    }
+
+    .analytics-grid{
+        grid-template-columns:1fr;
+    }
+
+    .admin-table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
     }
 
 }
