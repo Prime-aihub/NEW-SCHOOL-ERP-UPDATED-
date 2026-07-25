@@ -45,10 +45,6 @@ form.addEventListener("submit", async (e) => {
 const className = document.getElementById("className").value;
 const section = document.getElementById("section").value;
 
-const file = document.getElementById("attachment").files[0];
-
-const attachmentName = file ? file.name : "";
-const attachmentType = file ? file.type : "";
 
     if (!title || !description) {
         showMessage("Please fill all required fields.", "red");
@@ -90,9 +86,6 @@ const attachmentType = file ? file.type : "";
     priority,
     status,
     createdBy,
-
-    attachmentName,
-    attachmentType,
 
     publishDate: serverTimestamp(),
     createdAt: serverTimestamp(),
