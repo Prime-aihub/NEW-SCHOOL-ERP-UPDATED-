@@ -1,0 +1,195 @@
+/* ==========================================
+   STUDENT TIMETABLE
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fc;
+    color:#222;
+    transition:.3s;
+}
+
+/* ==========================================
+   TOP BAR
+========================================== */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+    background:#2563eb;
+    color:#fff;
+    position:sticky;
+    top:0;
+}
+
+.topbar h2{
+    font-size:22px;
+}
+
+.topbar button{
+    border:none;
+    cursor:pointer;
+    border-radius:8px;
+    padding:10px 15px;
+    font-size:15px;
+}
+
+#backBtn{
+    background:#fff;
+    color:#2563eb;
+    font-weight:bold;
+}
+
+#backBtn:hover{
+    background:#e5e7eb;
+}
+
+#themeToggle{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#fff;
+    color:#2563eb;
+    font-size:18px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.container{
+    max-width:1000px;
+    margin:30px auto;
+    padding:15px;
+}
+
+.card{
+    background:#fff;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.12);
+}
+
+.card h3{
+    margin-bottom:20px;
+    color:#2563eb;
+}
+
+#timetableImage{
+    width:100%;
+    max-width:900px;
+    border-radius:12px;
+    border:2px solid #ddd;
+    display:none;
+}
+
+#status{
+    margin-top:20px;
+    color:#666;
+    font-size:16px;
+}
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark-mode{
+    background:#111827;
+    color:#fff;
+}
+
+body.dark-mode .card{
+    background:#1f2937;
+}
+
+body.dark-mode .card h3{
+    color:#60a5fa;
+}
+
+body.dark-mode #status{
+    color:#d1d5db;
+}
+
+body.dark-mode #backBtn,
+body.dark-mode #themeToggle{
+    background:#374151;
+    color:#fff;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media(max-width:768px){
+
+.topbar{
+    padding:12px;
+}
+
+.topbar h2{
+    font-size:18px;
+}
+
+.topbar button{
+    padding:8px 12px;
+    font-size:14px;
+}
+
+.container{
+    margin:20px auto;
+}
+
+.card{
+    padding:15px;
+}
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:480px){
+
+.topbar{
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.topbar h2{
+    width:100%;
+    text-align:center;
+    font-size:18px;
+}
+
+#backBtn{
+    flex:1;
+}
+
+#themeToggle{
+    width:40px;
+    height:40px;
+}
+
+.card{
+    padding:12px;
+}
+
+.card h3{
+    font-size:18px;
+}
+
+#status{
+    font-size:14px;
+}
+
+}

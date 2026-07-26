@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Timetable Management</title>
+
+<link rel="stylesheet" href="timetable-management.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script type="module" src="timetable-management.js" defer></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <h1>
+            <i class="fas fa-calendar-alt"></i>
+            Timetable Management
+        </h1>
+
+        <p>
+            Manage Class Wise Timetable Images
+        </p>
+
+    </div>
+
+    <!-- Card -->
+
+    <div class="card">
+
+        <!-- Class -->
+
+        <div class="form-group">
+
+            <label>
+                <i class="fas fa-school"></i>
+                Class
+            </label>
+
+            <select id="class">
+
+                <option value="">Select Class</option>
+
+                <option>Nursery</option>
+                <option>LKG</option>
+                <option>UKG</option>
+
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+
+            </select>
+
+        </div>
+
+        <!-- Section -->
+
+        <div class="form-group">
+
+            <label>
+
+                <i class="fas fa-layer-group"></i>
+
+                Section
+
+            </label>
+
+            <select id="section">
+
+                <option value="">Select Section</option>
+
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+
+            </select>
+
+        </div>
+
+        <!-- URL -->
+
+        <div class="form-group">
+
+            <label>
+
+                <i class="fas fa-link"></i>
+
+                Timetable Image URL
+
+            </label>
+
+            <input
+type="text"
+id="imageUrl"
+placeholder="Enter timetable image URL">
+            
+
+        </div>
+
+        <!-- Preview -->
+
+        <div class="preview-box">
+
+            <h3>
+
+                <i class="fas fa-image"></i>
+
+                Preview
+
+            </h3>
+
+            <img
+            id="preview"
+            src=""
+            alt="Timetable Preview">
+
+        </div>
+
+        <!-- Buttons -->
+
+        <div class="button-group">
+
+            <button id="previewBtn">
+
+                <i class="fas fa-eye"></i>
+
+                Preview
+
+            </button>
+
+            <button id="saveBtn">
+
+                <i class="fas fa-save"></i>
+
+                Save Timetable
+
+            </button>
+
+            <button
+            type="reset"
+            id="resetBtn">
+
+                <i class="fas fa-rotate-left"></i>
+
+                Reset
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
