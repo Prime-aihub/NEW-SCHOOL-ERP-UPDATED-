@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Assignments | Maiamma School Hub</title>
+
+    <link rel="stylesheet"
+          href="student-assignment.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ==========================
+         TOP BAR
+    =========================== -->
+
+    <header class="topbar">
+
+        <a href="../student-dashboard.html"
+           class="back-btn">
+
+            <i class="fas fa-arrow-left"></i>
+
+            Dashboard
+
+        </a>
+
+        <h2>
+
+            <i class="fas fa-book-open"></i>
+
+            Student Assignments
+
+        </h2>
+
+        <button id="themeToggle"
+                class="theme-toggle">
+
+            <i class="fas fa-moon"></i>
+
+        </button>
+
+    </header>
+
+    <!-- ==========================
+         HERO
+    =========================== -->
+
+    <section class="hero">
+
+        <img src="images/hero-assignment.jpg"
+             alt="Assignments">
+
+        <div class="hero-overlay">
+
+            <h1>
+
+                Assignments
+
+            </h1>
+
+            <p>
+
+                Complete your assignments before the due date and improve your academic performance.
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         SUMMARY
+    =========================== -->
+
+    <section class="summary">
+
+        <div class="summary-card">
+
+            <i class="fas fa-book"></i>
+
+            <h3 id="totalAssignments">
+
+                0
+
+            </h3>
+
+            <span>
+
+                Total Assignments
+
+            </span>
+
+        </div>
+
+        <div class="summary-card">
+
+            <i class="fas fa-clock"></i>
+
+            <h3 id="pendingAssignments">
+
+                0
+
+            </h3>
+
+            <span>
+
+                Pending
+
+            </span>
+
+        </div>
+
+        <div class="summary-card">
+
+            <i class="fas fa-calendar-check"></i>
+
+            <h3 id="dueToday">
+
+                0
+
+            </h3>
+
+            <span>
+
+                Due Today
+
+            </span>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         SEARCH
+    =========================== -->
+
+    <section class="search-area">
+
+        <div class="search-box">
+
+            <i class="fas fa-search"></i>
+
+            <input type="text"
+                   id="searchAssignment"
+                   placeholder="Search subject or assignment...">
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         LOADING
+    =========================== -->
+
+    <div id="loading"
+         class="loading">
+
+        <div class="spinner"></div>
+
+        <p>
+
+            Loading Assignments...
+
+        </p>
+
+    </div>
+
+    <!-- ==========================
+         EMPTY
+    =========================== -->
+
+    <div id="emptyState"
+         class="empty-state"
+         style="display:none;">
+
+        <i class="fas fa-folder-open"></i>
+
+        <h3>
+
+            No Assignments Available
+
+        </h3>
+
+        <p>
+
+            Your teacher hasn't assigned anything yet.
+
+        </p>
+
+    </div>
+
+    <!-- ==========================
+         ASSIGNMENT LIST
+    =========================== -->
+
+    <main id="assignmentContainer"
+          class="assignment-container">
+
+        <!-- Firebase Assignment Cards -->
+
+    </main>
+
+    <!-- ==========================
+         SCRIPT
+    =========================== -->
+
+    <script type="module"
+            src="student-assignment.js"></script>
+
+</body>
+
+</html>

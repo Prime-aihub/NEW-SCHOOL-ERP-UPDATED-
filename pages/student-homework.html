@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Student Homework</title>
+
+<link rel="stylesheet"
+href="student-homework.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script type="module"
+src="student-homework.js"
+defer></script>
+
+</head>
+
+<body>
+
+<!-- ==========================
+TOP BAR
+========================== -->
+
+<header class="topbar">
+
+<button
+id="backBtn"
+onclick="location.href='../student-dashboard.html'">
+
+<i class="fas fa-arrow-left"></i>
+
+Dashboard
+
+</button>
+
+<h2>
+
+<i class="fas fa-book-open"></i>
+
+Homework
+
+</h2>
+
+<button id="themeToggle">
+
+<i class="fas fa-moon"></i>
+
+</button>
+
+</header>
+
+<!-- ==========================
+HERO
+========================== -->
+
+<section class="hero">
+
+<img
+src="images/hero-homework.jpg"
+alt="Homework Hero">
+
+</section>
+
+<!-- ==========================
+PAGE TITLE
+========================== -->
+
+<section class="page-title">
+
+<h1>
+
+Today's Homework
+
+</h1>
+
+<p>
+
+Complete your homework before the due date.
+
+</p>
+
+</section>
+
+<!-- ==========================
+HOMEWORK CONTAINER
+========================== -->
+
+<section
+id="homeworkContainer"
+class="homework-container">
+
+<!-- Firestore Homework Cards
+Will Load Here -->
+
+</section>
+
+<!-- ==========================
+EMPTY STATE
+========================== -->
+
+<div
+id="emptyState"
+class="empty-state"
+style="display:none;">
+
+<i class="fas fa-book"></i>
+
+<h3>
+
+No Homework Available
+
+</h3>
+
+<p>
+
+Your teacher has not assigned any homework yet.
+
+</p>
+
+</div>
+
+<!-- ==========================
+LOADING
+========================== -->
+
+<div
+id="loading"
+class="loading">
+
+<i class="fas fa-spinner fa-spin"></i>
+
+<p>
+
+Loading Homework...
+
+</p>
+
+</div>
+
+</body>
+
+</html>
