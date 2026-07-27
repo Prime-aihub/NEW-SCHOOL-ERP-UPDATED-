@@ -1,274 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeAiHub AI</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-    <title>
-        PrimeAiHub AI
-    </title>
-
-    <!-- ICONS -->
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-    <!-- LOTTIE -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
-    <!-- CSS -->
-
-    <link
-        rel="stylesheet"
-        href="ai.css">
-
+    <link rel="stylesheet" href="ai.css">
 </head>
-
 <body>
+    <div class="background-glow"></div>
 
-<div class="background-glow"></div>
-
-<!-- ==========================
-AI CONTAINER
-========================== -->
-
-<div class="ai-container">
-
-    <!-- ==========================
-    HEADER
-    ========================== -->
-
-    <header class="ai-header">
-
-        <button
-            class="back-btn">
-
-            <i class="fa-solid fa-arrow-left"></i>
-
-        </button>
-
-        <div>
-
-            <h2>
-
-                PrimeAiHub AI Tutor
-
-            </h2>
-
-            <p>
-
-                Learn • Explore • Grow
-
-            </p>
-
-        </div>
-
-        <button
-            class="menu-btn">
-
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-
-        </button>
-
-    </header>
-
-    <!-- ==========================
-    ROBOT
-    ========================== -->
-
-    <section
-        class="robot-section">
-
-        <!-- LOTTIE -->
-
-        <lottie-player
-
-            src="assets/lottie/student-bot.json"
-
-            background="transparent"
-
-            speed="1"
-
-            loop
-
-            autoplay>
-
-        </lottie-player>
-
-        <!-- FALLBACK IMAGE -->
-
-        <img
-
-            src="assets/images/robot.png"
-
-            class="robot-image"
-
-            alt="AI Robot">
-
-        <h1>
-
-            Hello 👋
-
-        </h1>
-
-        <p>
-
-            I'm your PrimeAiHub AI Tutor.
-
-            Ask me anything.
-
-        </p>
-
-    </section>
-
-  
-
-    <!-- ==========================
-    CHAT AREA
-    ========================== -->
-
-    <section
-
-        id="chatArea"
-
-        class="chat-area">
-
-        <!-- AI MESSAGE -->
-
-        <div
-
-            class="message ai">
-
-            <div
-
-                class="avatar">
-
-                🤖
-
+    <div class="ai-container">
+        <header class="ai-header">
+            <button class="back-btn" type="button" aria-label="Go back"><i class="fa-solid fa-arrow-left"></i></button>
+            <div>
+                <h2>PrimeAiHub AI Tutor</h2>
+                <p>Learn • Explore • Grow</p>
             </div>
+            <button class="menu-btn" type="button" aria-label="Open menu"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        </header>
 
-            <div
+        <section class="robot-section">
+            <lottie-player src="assets/lottie/student-bot.json" background="transparent" speed="1" loop autoplay></lottie-player>
+            <img src="assets/images/robot.png" class="robot-image" alt="AI Robot">
+            <h1>Hello 👋</h1>
+            <p>I'm your PrimeAiHub AI Tutor. Ask me anything.</p>
+        </section>
 
-                class="bubble">
-
-                Hello!
-
-                What would you like to learn today?
-
+        <section id="chatArea" class="chat-area" aria-live="polite">
+            <div class="message ai">
+                <div class="avatar">🤖</div>
+                <div class="bubble">Hello! What would you like to learn today?</div>
             </div>
+        </section>
 
-        </div>
+        <div id="typing" class="typing" aria-label="AI is typing" aria-hidden="true"><span></span><span></span><span></span></div>
 
-    </section>
-
-    <!-- ==========================
-    TYPING
-    ========================== -->
-
-    <div
-
-        id="typing"
-
-        class="typing">
-
-        <span></span>
-
-        <span></span>
-
-        <span></span>
-
+        <footer class="chat-footer">
+            <div class="chat-box">
+                <button id="attachBtn" class="icon-btn" type="button" aria-label="Attach a file"><i class="fa-solid fa-plus"></i></button>
+                <input id="messageInput" type="text" placeholder="Ask anything..." autocomplete="off">
+                <button id="voiceBtn" class="icon-btn" type="button" aria-label="Use voice input"><i class="fa-solid fa-microphone"></i></button>
+                <button id="sendBtn" class="send-btn" type="button" aria-label="Send message"><i class="fa-solid fa-arrow-up"></i></button>
+            </div>
+        </footer>
     </div>
 
-    <!-- ==========================
-    CHAT BOX
-    ========================== -->
+    <input type="file" id="fileInput" accept=".pdf,.png,.jpg,.jpeg,.webp" hidden>
 
-    <footer
-
-        class="chat-footer">
-
-        <div
-
-            class="chat-box">
-
-            <button
-
-                id="attachBtn"
-
-                class="icon-btn">
-
-                <i
-
-                    class="fa-solid fa-plus">
-
-                </i>
-
-            </button>
-
-            <input
-
-                id="messageInput"
-
-                type="text"
-
-                placeholder="Ask anything...">
-
-            <button
-
-                id="voiceBtn"
-
-                class="icon-btn">
-
-                <i
-
-                    class="fa-solid fa-microphone">
-
-                </i>
-
-            </button>
-
-            <button
-
-                id="sendBtn"
-
-                class="send-btn">
-
-                <i
-
-                    class="fa-solid fa-arrow-up">
-
-                </i>
-
-            </button>
-
-        </div>
-
-    </footer>
-
-</div>
-
-<!-- ==========================
-JS
-========================== -->
-
-<input
-    type="file"
-    id="fileInput"
-    accept=".pdf,.png,.jpg,.jpeg,.webp"
-    hidden>
-
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
-    
-<script src="ai.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+    <script src="ai.js"></script>
 </body>
-
 </html>
