@@ -12,6 +12,7 @@ const sendBtn = document.getElementById("sendBtn");
 const attachBtn = document.getElementById("attachBtn");
 const fileInput = document.getElementById("fileInput");
 const voiceBtn = document.getElementById("voiceBtn");
+const newChatBtn = document.getElementById("newChatBtn");
 const typing = document.getElementById("typing");
 const robot = document.querySelector(".robot-section");
 
@@ -31,6 +32,7 @@ setupSpeechRecognition();
 function bindEvents() {
     sendBtn.addEventListener("click", sendMessage);
     attachBtn.addEventListener("click", () => fileInput.click());
+    newChatBtn.addEventListener("click", startNewChat);
 
     input.addEventListener("keydown", (event) => {
         if (event.key === "Enter" && !event.shiftKey) {
@@ -325,4 +327,24 @@ function loadChat() {
     } catch (error) {
         console.error("Unable to load chat history:", error);
     }
+}
+
+function startNewChat() {
+
+    if (!confirm("Start a new chat?")) return;
+
+    localStorage.removeItem(CHAT_STORAGE_KEY);
+
+    chatArea.innerHTML = `
+        <div class="message ai">
+            <div class="avatar">🤖</div>
+            <div class="bubble">
+                Hello! What would you like to learn today?
+            </div>
+        </div>
+    `;
+
+    input.value = "";
+    scrollBottom();
+
 }
