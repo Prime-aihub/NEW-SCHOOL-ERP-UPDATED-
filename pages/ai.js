@@ -20,6 +20,12 @@ document.getElementById("messageInput");
 const sendBtn =
 document.getElementById("sendBtn");
 
+const attachBtn =
+document.getElementById("attachBtn");
+
+const fileInput =
+document.getElementById("fileInput");
+
 const typing =
 document.getElementById("typing");
 
@@ -31,6 +37,14 @@ sendBtn.addEventListener(
 "click",
 sendMessage
 );
+
+attachBtn.addEventListener(
+"click",
+()=>{
+
+fileInput.click();
+
+});
 
 input.addEventListener(
 "keypress",
@@ -575,5 +589,121 @@ new Audio(
 audio.volume=.3;
 
 audio.play();
+
+}
+
+/* ==========================================
+FILE UPLOAD
+========================================== */
+
+fileInput.addEventListener(
+"change",
+()=>{
+
+const file =
+fileInput.files[0];
+
+if(!file)
+return;
+
+showFile(file);
+
+});
+
+function showFile(file){
+
+const message =
+document.createElement("div");
+
+message.className =
+"message user";
+
+const avatar =
+document.createElement("div");
+
+avatar.className =
+"avatar";
+
+avatar.innerHTML="👤";
+
+const bubble =
+document.createElement("div");
+
+bubble.className=
+"bubble";
+
+const card =
+document.createElement("div");
+
+card.className=
+"file-card";
+
+const icon =
+document.createElement("div");
+
+icon.className=
+"file-icon";
+
+if(file.type.includes("image")){
+
+icon.innerHTML="🖼️";
+
+}else{
+
+icon.innerHTML="📄";
+
+}
+
+const info =
+document.createElement("div");
+
+info.className=
+"file-info";
+
+info.innerHTML=
+
+`
+<div class="file-name">
+
+${file.name}
+
+</div>
+
+<div class="file-size">
+
+${(file.size/1024/1024).toFixed(2)} MB
+
+</div>
+
+`;
+
+card.appendChild(icon);
+
+card.appendChild(info);
+
+bubble.appendChild(card);
+
+if(file.type.startsWith("image/")){
+
+const img =
+document.createElement("img");
+
+img.className=
+"file-preview";
+
+img.src=
+URL.createObjectURL(file);
+
+bubble.appendChild(img);
+
+}
+
+message.appendChild(avatar);
+
+message.appendChild(bubble);
+
+chatArea.appendChild(message);
+
+scrollBottom();
 
 }
