@@ -38,13 +38,52 @@ body{font-family:Poppins,sans-serif;background:radial-gradient(circle at top,#18
 .back-btn,.menu-btn{width:46px;height:46px;border:none;border-radius:50%;background:rgba(255,255,255,.06);color:white;cursor:pointer;transition:var(--transition);}
 .back-btn:hover,.menu-btn:hover{transform:scale(1.08);box-shadow:var(--shadow);}
 
-.robot-section{padding:25px 20px;text-align:center;}
-.robot-section lottie-player{width:220px;height:220px;margin:auto;animation:floatRobot 5s ease-in-out infinite;}
-.robot-section.thinking lottie-player{filter:drop-shadow(0 0 12px var(--cyan));animation-duration:1.4s;}
-.robot-image{display:none;width:180px;margin:auto;}
-.robot-section h1{margin-top:8px;font-size:34px;font-weight:700;}
-.robot-section p{width:90%;margin:12px auto;color:#bfd6ef;line-height:1.6;}
-@keyframes floatRobot{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.robot-section{
+    padding:20px;
+    text-align:center;
+}
+
+.robot-video{
+    width:100%;
+    max-width:360px;
+    height:auto;
+    aspect-ratio:16/9;
+    display:block;
+    margin:0 auto 15px;
+    object-fit:contain;
+    border-radius:18px;
+    animation:floatRobot 5s ease-in-out infinite;
+    pointer-events:none;
+    user-select:none;
+    background:transparent;
+}
+
+.robot-section.thinking .robot-video{
+    filter:drop-shadow(0 0 15px var(--cyan));
+    animation-duration:1.4s;
+}
+
+.robot-section h1{
+    margin-top:0;
+    font-size:34px;
+    font-weight:700;
+}
+
+.robot-section p{
+    width:90%;
+    margin:10px auto 0;
+    color:#bfd6ef;
+    line-height:1.6;
+}
+
+@keyframes floatRobot{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}
 
 .chat-area{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:18px;scroll-behavior:smooth;}
 .chat-area::-webkit-scrollbar{width:6px;}
