@@ -31,6 +31,10 @@ body{font-family:Poppins,sans-serif;background:radial-gradient(circle at top,#18
 .ai-header{height:80px;display:flex;align-items:center;justify-content:space-between;padding:20px;background:var(--glass);backdrop-filter:blur(24px);border-bottom:1px solid var(--glass-border);}
 .ai-header h2{font-size:22px;font-weight:700;}
 .ai-header p{color:#9db5d6;font-size:13px;margin-top:4px;}
+.header-actions{
+    display:flex;
+    gap:10px;
+}
 .back-btn,.menu-btn{width:46px;height:46px;border:none;border-radius:50%;background:rgba(255,255,255,.06);color:white;cursor:pointer;transition:var(--transition);}
 .back-btn:hover,.menu-btn:hover{transform:scale(1.08);box-shadow:var(--shadow);}
 
