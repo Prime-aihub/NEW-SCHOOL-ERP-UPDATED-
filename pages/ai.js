@@ -1,688 +1,328 @@
 /* ==========================================
-   PRIMEAIHUB AI
+   PRIMEAIHUB AI - FRONTEND CHAT CONTROLLER
 ========================================== */
 
-const AI_URL =
-"https://primeaihub-ai.adityapatil-171296.workers.dev/chat";
-
+const AI_URL = "https://primeaihub-ai.adityapatil-171296.workers.dev/chat";
 const ROLE = "student";
+const CHAT_STORAGE_KEY = "primeai-chat";
 
-/* ==========================================
-ELEMENTS
-========================================== */
+const chatArea = document.getElementById("chatArea");
+const input = document.getElementById("messageInput");
+const sendBtn = document.getElementById("sendBtn");
+const attachBtn = document.getElementById("attachBtn");
+const fileInput = document.getElementById("fileInput");
+const voiceBtn = document.getElementById("voiceBtn");
+const typing = document.getElementById("typing");
+const robot = document.querySelector(".robot-section");
 
-const chatArea =
-document.getElementById("chatArea");
+let isSending = false;
+let recognition = null;
 
-const input =
-document.getElementById("messageInput");
-
-const sendBtn =
-document.getElementById("sendBtn");
-
-const attachBtn =
-document.getElementById("attachBtn");
-
-const fileInput =
-document.getElementById("fileInput");
-
-const typing =
-document.getElementById("typing");
-
-/* ==========================================
-SEND BUTTON
-========================================== */
-
-sendBtn.addEventListener(
-"click",
-sendMessage
-);
-
-attachBtn.addEventListener(
-"click",
-()=>{
-
-fileInput.click();
-
-});
-
-input.addEventListener(
-"keypress",
-e=>{
-
-if(e.key==="Enter"){
-
-e.preventDefault();
-
-sendMessage();
-
+if (window.marked) {
+    marked.setOptions({ breaks: true, gfm: true });
 }
 
-});
+/* ---------- Initialisation and events ---------- */
 
-/* ==========================================
-SEND
-========================================== */
+loadChat();
+bindEvents();
+setupSpeechRecognition();
 
-async function sendMessage(){
+function bindEvents() {
+    sendBtn.addEventListener("click", sendMessage);
+    attachBtn.addEventListener("click", () => fileInput.click());
 
-const text =
-input.value.trim();
+    input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
 
-if(!text) return;
+    fileInput.addEventListener("change", handleFileSelection);
 
-addMessage(
-"text",
-text
-);
-
-input.value="";
-
-showTyping();
-
-const reply =
-await askAI(
-ROLE,
-text
-);
-
-hideTyping();
-
-await addAIMessage(reply);
-
+    // Delegation keeps restored LocalStorage copy buttons working as well.
+    chatArea.addEventListener("click", handleChatAction);
 }
 
-/* ==========================================
-CALL AI
-========================================== */
+/* ---------- Sending and API ---------- */
 
-async function askAI(role,message){
+async function sendMessage() {
+    const text = input.value.trim();
+    if (!text || isSending) return;
 
-try{
+    isSending = true;
+    sendBtn.disabled = true;
+    input.value = "";
+    addTextMessage("user", text);
+    showTyping();
+    robotThinking();
 
-const response =
-await fetch(AI_URL,{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-
-role,
-message
-
-})
-
-});
-
-const data =
-await response.json();
-
-if(!data.success){
-
-return "AI Error.";
-
+    try {
+        const reply = await askAI(ROLE, text);
+        addAIMessage(reply);
+    } finally {
+        hideTyping();
+        robotIdle();
+        isSending = false;
+        sendBtn.disabled = false;
+        input.focus();
+    }
 }
 
-return data.reply;
+async function askAI(role, message) {
+    try {
+        const response = await fetch(AI_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ role, message })
+        });
 
+        if (!response.ok) throw new Error(`Request failed with ${response.status}`);
+        const data = await response.json();
+        return data && data.success && typeof data.reply === "string"
+            ? data.reply
+            : "AI Error. Please try again.";
+    } catch (error) {
+        console.error("PrimeAiHub AI request failed:", error);
+        return "Unable to connect. Please check your internet connection and try again.";
+    }
 }
 
-catch(error){
+/* ---------- Message creation and Markdown ---------- */
 
-console.error(error);
-
-return "Unable to connect.";
-
+function addTextMessage(type, text) {
+    const message = createMessageShell(type);
+    const bubble = message.querySelector(".bubble");
+    bubble.textContent = text;
+    appendTime(bubble);
+    appendMessage(message);
 }
 
+function addAIMessage(text) {
+    const message = createMessageShell("ai");
+    const bubble = message.querySelector(".bubble");
+    const content = document.createElement("div");
+    content.className = "message-content message-content--revealed";
+    content.innerHTML = formatMessage(text);
+    bubble.appendChild(content);
+    bubble.appendChild(createCopyButton(text));
+    appendTime(bubble);
+    appendMessage(message);
 }
 
-/* ==========================================
-CHAT BUBBLES
-========================================== */
-
-function addMessage(type, text) {
-
+function createMessageShell(type) {
     const message = document.createElement("div");
     message.className = `message ${type}`;
 
     const avatar = document.createElement("div");
     avatar.className = "avatar";
-
-    if (type === "ai") {
-
-        avatar.innerHTML = "🤖";
-
-    } else {
-
-        avatar.innerHTML = "👤";
-
-    }
+    avatar.textContent = type === "ai" ? "🤖" : "👤";
 
     const bubble = document.createElement("div");
     bubble.className = "bubble";
-
-    bubble.innerHTML = formatMessage(text);
-
-    const time = document.createElement("div");
-    time.className = "time";
-
-    const now = new Date();
-
-    time.textContent =
-        now.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit"
-        });
-
-    bubble.appendChild(time);
-
-    message.appendChild(avatar);
-    message.appendChild(bubble);
-
-    chatArea.appendChild(message);
-
-    scrollBottom();
-
+    message.append(avatar, bubble);
+    return message;
 }
-
-/* ==========================================
-FORMAT MESSAGE
-========================================== */
 
 function formatMessage(text) {
-
-    return DOMPurify.sanitize(
-        marked.parse(text)
-    );
-
-}
-/* ==========================================
-AUTO SCROLL
-========================================== */
-
-function scrollBottom() {
-
-    chatArea.scrollTo({
-
-        top: chatArea.scrollHeight,
-
-        behavior: "smooth"
-
-    });
-
+    const source = String(text || "");
+    const html = window.marked ? marked.parse(source) : escapeHtml(source).replace(/\n/g, "<br>");
+    return window.DOMPurify
+        ? DOMPurify.sanitize(html, { USE_PROFILES: { html: true } })
+        : html;
 }
 
-/* ==========================================
-TYPING
-========================================== */
+function escapeHtml(value) {
+    const element = document.createElement("div");
+    element.textContent = value;
+    return element.innerHTML;
+}
+
+function appendTime(bubble) {
+    const time = document.createElement("div");
+    time.className = "time";
+    time.textContent = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+    bubble.appendChild(time);
+}
+
+function appendMessage(message) {
+    chatArea.appendChild(message);
+    saveChat();
+    scrollBottom();
+}
+
+/* ---------- Copy ---------- */
+
+function createCopyButton(text) {
+    const button = document.createElement("button");
+    button.className = "copy-btn";
+    button.type = "button";
+    button.setAttribute("aria-label", "Copy AI response");
+    button.dataset.copyText = text;
+    button.innerHTML = '<i class="fa-regular fa-copy"></i>';
+    return button;
+}
+
+async function handleChatAction(event) {
+    const button = event.target.closest(".copy-btn");
+    if (!button) return;
+
+    try {
+        await copyText(button.dataset.copyText || "");
+        button.innerHTML = '<i class="fa-solid fa-check"></i>';
+        window.setTimeout(() => {
+            button.innerHTML = '<i class="fa-regular fa-copy"></i>';
+        }, 1500);
+    } catch (error) {
+        console.error("Copy failed:", error);
+    }
+}
+
+async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+    }
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    textarea.remove();
+}
+
+/* ---------- Typing and robot state ---------- */
 
 function showTyping() {
-
     typing.style.display = "flex";
-
+    typing.setAttribute("aria-hidden", "false");
     scrollBottom();
-
 }
 
 function hideTyping() {
-
     typing.style.display = "none";
-
+    typing.setAttribute("aria-hidden", "true");
 }
 
-/* ==========================================
-PREMIUM AI TYPING EFFECT
-========================================== */
-
-async function typeMessage(element, html) {
-
-    element.innerHTML = html;
-
-    chatArea.scrollTop = chatArea.scrollHeight;
-
+function robotThinking() {
+    if (robot) robot.classList.add("thinking");
 }
 
+function robotIdle() {
+    if (robot) robot.classList.remove("thinking");
 }
 
-/* ==========================================
-COPY BUTTON
-========================================== */
-
-function createCopyButton(text) {
-
-    const btn = document.createElement("button");
-
-    btn.className = "copy-btn";
-
-    btn.innerHTML =
-    '<i class="fa-regular fa-copy"></i>';
-
-    btn.onclick = async () => {
-
-        await navigator.clipboard.writeText(text);
-
-        btn.innerHTML =
-        '<i class="fa-solid fa-check"></i>';
-
-        setTimeout(() => {
-
-            btn.innerHTML =
-            '<i class="fa-regular fa-copy"></i>';
-
-        },1500);
-
-    };
-
-    return btn;
-
+function scrollBottom() {
+    chatArea.scrollTo({ top: chatArea.scrollHeight, behavior: "smooth" });
 }
 
-/* ==========================================
-MARKDOWN
-========================================== */
+/* ---------- Speech recognition and speech output ---------- */
 
-function formatMessage(text){
-
-    text = text
-
-    .replace(/^### (.*)$/gm,"<h3>$1</h3>")
-
-    .replace(/^## (.*)$/gm,"<h2>$1</h2>")
-
-    .replace(/^# (.*)$/gm,"<h1>$1</h1>")
-
-    .replace(/\*\*(.*?)\*\*/g,"<strong>$1</strong>")
-
-    .replace(/\*(.*?)\*/g,"<em>$1</em>")
-
-    .replace(/`([^`]+)`/g,"<code>$1</code>")
-
-    .replace(/\n/g,"<br>");
-
-    return text;
-
-}
-
-/* ==========================================
-NEW AI MESSAGE
-========================================== */
-
-async function addAIMessage(text){
-
-    const message =
-    document.createElement("div");
-
-    message.className =
-    "message ai";
-
-    const avatar =
-    document.createElement("div");
-
-    avatar.className =
-    "avatar";
-
-    avatar.innerHTML="🤖";
-
-    const bubble =
-    document.createElement("div");
-
-    bubble.className=
-    "bubble";
-
-    const content =
-    document.createElement("div");
-
-    bubble.appendChild(content);
-
-    const copy =
-    createCopyButton(text);
-
-    bubble.appendChild(copy);
-
-    message.appendChild(avatar);
-
-    message.appendChild(bubble);
-
-    chatArea.appendChild(message);
-
-    scrollBottom();
-
-    await typeMessage(
-        content,
-        formatMessage(text)
-    );
-
-}
-
-/* ==========================================
-   PRIMEAIHUB AI PREMIUM FEATURES
-========================================== */
-
-/* ==========================
-   SPEECH TO TEXT
-========================== */
-
-const SpeechRecognition =
-window.SpeechRecognition ||
-window.webkitSpeechRecognition;
-
-let recognition = null;
-
-if (SpeechRecognition) {
+function setupSpeechRecognition() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        voiceBtn.disabled = true;
+        voiceBtn.title = "Voice input is not supported by this browser";
+        return;
+    }
 
     recognition = new SpeechRecognition();
-
     recognition.lang = "en-US";
-
     recognition.interimResults = false;
-
     recognition.maxAlternatives = 1;
 
-}
-
-const voiceBtn =
-document.getElementById("voiceBtn");
-
-if (voiceBtn && recognition) {
-
     voiceBtn.addEventListener("click", () => {
-
-        recognition.start();
-
-        voiceBtn.classList.add("recording");
-
+        try {
+            recognition.start();
+            voiceBtn.classList.add("recording");
+        } catch (error) {
+            // Calling start while recognition is already active is harmless.
+            if (error.name !== "InvalidStateError") console.error("Voice input failed:", error);
+        }
     });
 
-    recognition.onresult = (event) => {
-
-        input.value =
-        event.results[0][0].transcript;
-
-    };
-
-    recognition.onend = () => {
-
-        voiceBtn.classList.remove("recording");
-
-    };
-
+    recognition.addEventListener("result", (event) => {
+        input.value = event.results[0][0].transcript;
+        input.focus();
+    });
+    recognition.addEventListener("end", () => voiceBtn.classList.remove("recording"));
+    recognition.addEventListener("error", () => voiceBtn.classList.remove("recording"));
 }
 
-/* ==========================
-   TEXT TO SPEECH
-========================== */
-
-function speak(text){
-
-    if(!("speechSynthesis" in window))
-    return;
-
-    speechSynthesis.cancel();
-
-    const speech =
-    new SpeechSynthesisUtterance(text);
-
+function speak(text) {
+    if (!("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const speech = new SpeechSynthesisUtterance(text);
     speech.rate = 1;
-
     speech.pitch = 1;
-
     speech.volume = 1;
-
     speech.lang = "en-US";
-
-    speechSynthesis.speak(speech);
-
+    window.speechSynthesis.speak(speech);
 }
 
-/* ==========================
-   SAVE CHAT
-========================== */
+/* ---------- Files ---------- */
 
-function saveChat(){
-
-    localStorage.setItem(
-
-        "primeai-chat",
-
-        chatArea.innerHTML
-
-    );
-
+function handleFileSelection() {
+    const file = fileInput.files && fileInput.files[0];
+    if (file) showFile(file);
+    fileInput.value = ""; // Selecting the same file again should still trigger a preview.
 }
 
-/* ==========================
-   LOAD CHAT
-========================== */
+function showFile(file) {
+    const message = createMessageShell("user");
+    const bubble = message.querySelector(".bubble");
+    const card = document.createElement("div");
+    card.className = "file-card";
 
-function loadChat(){
+    const icon = document.createElement("div");
+    icon.className = "file-icon";
+    icon.textContent = file.type.startsWith("image/") ? "🖼️" : "📄";
 
-    const history =
-    localStorage.getItem(
-    "primeai-chat"
-    );
+    const info = document.createElement("div");
+    info.className = "file-info";
+    const name = document.createElement("div");
+    name.className = "file-name";
+    name.textContent = file.name;
+    const size = document.createElement("div");
+    size.className = "file-size";
+    size.textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB`;
+    info.append(name, size);
+    card.append(icon, info);
+    bubble.appendChild(card);
 
-    if(history){
-
-        chatArea.innerHTML =
-        history;
-
-        scrollBottom();
-
+    if (file.type.startsWith("image/")) {
+        const preview = document.createElement("img");
+        preview.className = "file-preview";
+        preview.alt = file.name;
+        preview.src = URL.createObjectURL(file);
+        bubble.appendChild(preview);
     }
 
+    appendTime(bubble);
+    appendMessage(message);
 }
 
-window.addEventListener(
-"load",
-loadChat
-);
+/* ---------- Chat history ---------- */
 
-/* ==========================
-   AUTO SAVE
-========================== */
-
-const observer =
-new MutationObserver(()=>{
-
-    saveChat();
-
-});
-
-observer.observe(chatArea, {
-    childList: true,
-    subtree: true
-});
-
-/* ==========================
-   ROBOT THINKING
-========================== */
-
-const robot =
-document.querySelector(
-".robot-section"
-);
-
-function robotThinking(){
-
-    if(robot){
-
-        robot.classList.add(
-        "thinking"
-        );
-
+function saveChat() {
+    try {
+        localStorage.setItem(CHAT_STORAGE_KEY, chatArea.innerHTML);
+    } catch (error) {
+        console.error("Unable to save chat history:", error);
     }
-
 }
 
-function robotIdle(){
-
-    if(robot){
-
-        robot.classList.remove(
-        "thinking"
-        );
-
+function loadChat() {
+    try {
+        const history = localStorage.getItem(CHAT_STORAGE_KEY);
+        if (history) {
+            chatArea.innerHTML = DOMPurify ? DOMPurify.sanitize(history, { USE_PROFILES: { html: true } }) : history;
+            scrollBottom();
+        }
+    } catch (error) {
+        console.error("Unable to load chat history:", error);
     }
-
-}
-
-/* ==========================
-   MODIFY SEND
-========================== */
-
-const oldSend =
-sendMessage;
-
-sendMessage = async function(){
-
-const text =
-input.value.trim();
-
-if(!text)
-return;
-
-robotThinking();
-
-await oldSend();
-
-robotIdle();
-
-}
-
-/* ==========================
-   PLAY SOUND
-========================== */
-
-function playPop(){
-
-const audio =
-new Audio(
-"https://actions.google.com/sounds/v1/cartoon/pop.ogg"
-);
-
-audio.volume=.3;
-
-audio.play();
-
-}
-
-/* ==========================================
-FILE UPLOAD
-========================================== */
-
-fileInput.addEventListener(
-"change",
-()=>{
-
-const file =
-fileInput.files[0];
-
-if(!file)
-return;
-
-showFile(file);
-
-});
-
-function showFile(file){
-
-const message =
-document.createElement("div");
-
-message.className =
-"message user";
-
-const avatar =
-document.createElement("div");
-
-avatar.className =
-"avatar";
-
-avatar.innerHTML="👤";
-
-const bubble =
-document.createElement("div");
-
-bubble.className=
-"bubble";
-
-const card =
-document.createElement("div");
-
-card.className=
-"file-card";
-
-const icon =
-document.createElement("div");
-
-icon.className=
-"file-icon";
-
-if(file.type.includes("image")){
-
-icon.innerHTML="🖼️";
-
-}else{
-
-icon.innerHTML="📄";
-
-}
-
-const info =
-document.createElement("div");
-
-info.className=
-"file-info";
-
-info.innerHTML=
-
-`
-<div class="file-name">
-
-${file.name}
-
-</div>
-
-<div class="file-size">
-
-${(file.size/1024/1024).toFixed(2)} MB
-
-</div>
-
-`;
-
-card.appendChild(icon);
-
-card.appendChild(info);
-
-bubble.appendChild(card);
-
-if(file.type.startsWith("image/")){
-
-const img =
-document.createElement("img");
-
-img.className=
-"file-preview";
-
-img.src=
-URL.createObjectURL(file);
-
-bubble.appendChild(img);
-
-}
-
-message.appendChild(avatar);
-
-message.appendChild(bubble);
-
-chatArea.appendChild(message);
-
-scrollBottom();
-
 }
