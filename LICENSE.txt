@@ -1,0 +1,33 @@
+=========================================================
+           MAIAMMA SCHOOL ERP
+        Developed by PrimeAiHub
+=========================================================
+
+Copyright © 2026 Maiamma Foundation.
+Developed by PrimeAiHub.
+https://primeaihub.in
+
+All Rights Reserved.
+
+This software, including but not limited to its source code,
+user interface, database structure, graphics, documentation,
+APIs, workflows, and all associated assets, is the exclusive
+intellectual property of Maiamma Foundation.
+
+Unauthorized copying, reproduction, modification,
+distribution, reverse engineering, publication, resale,
+or commercial use of this software, in whole or in part,
+is strictly prohibited without prior written permission
+from Maiamma Foundation.
+
+This software is licensed for authorized use only.
+Violations may result in civil and criminal penalties
+under applicable copyright and intellectual property laws.
+
+For licensing or business enquiries:
+
+Maiamma Foundation
+Developed by PrimeAiHub
+Website: https://primeaihub.in
+
+© 2026 Maiamma Foundation. All Rights Reserved.
