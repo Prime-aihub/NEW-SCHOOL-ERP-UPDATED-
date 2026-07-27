@@ -239,23 +239,13 @@ function hideTyping() {
 PREMIUM AI TYPING EFFECT
 ========================================== */
 
-async function typeMessage(element, text) {
+async function typeMessage(element, html) {
 
-    element.innerHTML = "";
+    element.innerHTML = html;
 
-    let index = 0;
+    chatArea.scrollTop = chatArea.scrollHeight;
 
-    while (index < text.length) {
-
-        element.innerHTML += text.charAt(index);
-
-        index++;
-
-        chatArea.scrollTop = chatArea.scrollHeight;
-
-        await new Promise(resolve => setTimeout(resolve, 12));
-
-    }
+}
 
 }
 
