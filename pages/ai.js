@@ -193,30 +193,12 @@ function addMessage(type, text) {
 /* ==========================================
 FORMAT MESSAGE
 ========================================== */
+
 function formatMessage(text) {
 
-    return text
-
-        // Convert HTML headings
-        .replace(/<h1>(.*?)<\/h1>/gi,"<h2>$1</h2>")
-        .replace(/<h2>(.*?)<\/h2>/gi,"<h3>$1</h3>")
-        .replace(/<h3>(.*?)<\/h3>/gi,"<h3>$1</h3>")
-
-        // Convert HTML formatting
-        .replace(/<strong>(.*?)<\/strong>/gi,"<b>$1</b>")
-        .replace(/<em>(.*?)<\/em>/gi,"<i>$1</i>")
-
-        // Remove horizontal rules
-        .replace(/---+/g,"<hr>")
-
-        // Markdown bold
-        .replace(/\*\*(.*?)\*\*/g,"<b>$1</b>")
-
-        // Markdown italic
-        .replace(/\*(.*?)\*/g,"<i>$1</i>")
-
-        // New lines
-        .replace(/\n/g,"<br>");
+    return DOMPurify.sanitize(
+        marked.parse(text)
+    );
 
 }
 /* ==========================================
