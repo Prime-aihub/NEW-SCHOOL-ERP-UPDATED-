@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        PrimeAiHub AI
+    </title>
+
+    <!-- ICONS -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- LOTTIE -->
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="ai.css">
+
+</head>
+
+<body>
+
+<div class="background-glow"></div>
+
+<!-- ==========================
+AI CONTAINER
+========================== -->
+
+<div class="ai-container">
+
+    <!-- ==========================
+    HEADER
+    ========================== -->
+
+    <header class="ai-header">
+
+        <button
+            class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+        <div>
+
+            <h2>
+
+                PrimeAiHub AI Tutor
+
+            </h2>
+
+            <p>
+
+                Learn • Explore • Grow
+
+            </p>
+
+        </div>
+
+        <button
+            class="menu-btn">
+
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+
+        </button>
+
+    </header>
+
+    <!-- ==========================
+    ROBOT
+    ========================== -->
+
+    <section
+        class="robot-section">
+
+        <!-- LOTTIE -->
+
+        <lottie-player
+
+            src="assets/lottie/student-bot.json"
+
+            background="transparent"
+
+            speed="1"
+
+            loop
+
+            autoplay>
+
+        </lottie-player>
+
+        <!-- FALLBACK IMAGE -->
+
+        <img
+
+            src="assets/images/robot.png"
+
+            class="robot-image"
+
+            alt="AI Robot">
+
+        <h1>
+
+            Hello 👋
+
+        </h1>
+
+        <p>
+
+            I'm your PrimeAiHub AI Tutor.
+
+            Ask me anything.
+
+        </p>
+
+    </section>
+
+    <!-- ==========================
+    QUICK ACTIONS
+    ========================== -->
+
+    <section
+        class="quick-actions">
+
+        <button>
+
+            📚 Homework
+
+        </button>
+
+        <button>
+
+            🧠 Explain Topic
+
+        </button>
+
+        <button>
+
+            📝 Quiz Me
+
+        </button>
+
+        <button>
+
+            🎯 Career
+
+        </button>
+
+    </section>
+
+    <!-- ==========================
+    CHAT AREA
+    ========================== -->
+
+    <section
+
+        id="chatArea"
+
+        class="chat-area">
+
+        <!-- AI MESSAGE -->
+
+        <div
+
+            class="message ai">
+
+            <div
+
+                class="avatar">
+
+                🤖
+
+            </div>
+
+            <div
+
+                class="bubble">
+
+                Hello!
+
+                What would you like to learn today?
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+    TYPING
+    ========================== -->
+
+    <div
+
+        id="typing"
+
+        class="typing">
+
+        <span></span>
+
+        <span></span>
+
+        <span></span>
+
+    </div>
+
+    <!-- ==========================
+    CHAT BOX
+    ========================== -->
+
+    <footer
+
+        class="chat-footer">
+
+        <div
+
+            class="chat-box">
+
+            <button
+
+                id="attachBtn"
+
+                class="icon-btn">
+
+                <i
+
+                    class="fa-solid fa-plus">
+
+                </i>
+
+            </button>
+
+            <input
+
+                id="messageInput"
+
+                type="text"
+
+                placeholder="Ask anything...">
+
+            <button
+
+                id="voiceBtn"
+
+                class="icon-btn">
+
+                <i
+
+                    class="fa-solid fa-microphone">
+
+                </i>
+
+            </button>
+
+            <button
+
+                id="sendBtn"
+
+                class="send-btn">
+
+                <i
+
+                    class="fa-solid fa-arrow-up">
+
+                </i>
+
+            </button>
+
+        </div>
+
+    </footer>
+
+</div>
+
+<!-- ==========================
+JS
+========================== -->
+
+<script src="ai.js"></script>
+
+</body>
+
+</html>
