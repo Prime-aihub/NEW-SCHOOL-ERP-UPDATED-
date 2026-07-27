@@ -1,98 +1,482 @@
-const examForm = document.querySelector("#examForm");
-const formCard = document.querySelector("#formCard");
-const examRows = document.querySelector("#examRows");
-const notice = document.querySelector("#notice");
+import { auth, db } from "../js/firebase.js";
 
-let exams = JSON.parse(
-  localStorage.getItem("teacherExams") || "[]"
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+import {
+    addDoc,
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    query,
+    serverTimestamp,
+    where
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
+const examForm =
+document.querySelector("#examForm");
+
+const formCard =
+document.querySelector("#formCard");
+
+const examRows =
+document.querySelector("#examRows");
+
+const notice =
+document.querySelector("#notice");
+
+const showFormButton =
+document.querySelector("#showForm");
+
+const closeFormButton =
+document.querySelector("#closeForm");
+
+const searchExam =
+document.querySelector("#searchExam");
+
+
+let exams = [];
+
+let teacher = {};
+
+const today =
+new Date().toISOString().slice(0,10);
+
+
+/* ==========================
+   AUTH
+========================== */
+
+onAuthStateChanged(
+
+    auth,
+
+    async user => {
+
+        if(!user){
+
+            window.location.href =
+            "../login.html";
+
+            return;
+
+        }
+
+        try{
+
+            const teacherSnap =
+            await getDoc(
+
+                doc(
+                    db,
+                    "teachers",
+                    user.uid
+                )
+
+            );
+
+            if(
+                teacherSnap.exists()
+            ){
+
+                teacher =
+                teacherSnap.data();
+
+            }
+
+            await loadExams();
+
+        }
+
+        catch(error){
+
+            console.error(error);
+
+            notice.textContent =
+            "Unable to load exams.";
+
+        }
+
+    }
+
 );
 
-const today = new Date().toISOString().slice(0, 10);
 
-function escapeText(value) {
-  const el = document.createElement("div");
-  el.textContent = value;
-  return el.innerHTML;
+/* ==========================
+   ESCAPE HTML
+========================== */
+
+function escapeText(value){
+
+    const div =
+    document.createElement("div");
+
+    div.textContent =
+    value || "";
+
+    return div.innerHTML;
+
 }
 
-function renderExams() {
-  const keyword = document
-    .querySelector("#searchExam")
-    .value
-    .toLowerCase();
 
-  const shown = exams.filter(exam =>
-    `${exam.examName} ${exam.subject} ${exam.className}`
-      .toLowerCase()
-      .includes(keyword)
-  );
+/* ==========================
+   LOAD EXAMS
+========================== */
 
-  examRows.innerHTML = shown.length
-    ? shown.map(exam => `
-      <tr>
-        <td>${escapeText(exam.examName)}</td>
-        <td>${escapeText(exam.subject)}</td>
-        <td>${escapeText(exam.className)}</td>
-        <td>${exam.examDate}</td>
-        <td>${exam.maxMarks}</td>
-        <td>${escapeText(exam.duration)}</td>
-      </tr>
-    `).join("")
-    : `
-      <tr>
-        <td class="empty" colspan="6">
-          No exams created yet.
+async function loadExams(){
+
+    examRows.innerHTML =
+
+    `
+    <tr>
+
+        <td colspan="6"
+            class="empty">
+
+            Loading Exams...
+
         </td>
-      </tr>
+
+    </tr>
     `;
 
-  document.querySelector("#totalExams").textContent =
-    exams.length;
+    const examQuery =
 
-  document.querySelector("#upcomingExams").textContent =
-    exams.filter(exam => exam.examDate >= today).length;
+    query(
 
-  const subjects = new Set(
-    exams.map(exam => exam.subject.toLowerCase())
-  );
+        collection(
+            db,
+            "exams"
+        ),
 
-  document.querySelector("#subjectsCount").textContent =
-    subjects.size;
+        where(
+            "teacherId",
+            "==",
+            auth.currentUser.uid
+        )
+
+    );
+
+    const snapshot =
+
+    await getDocs(
+        examQuery
+    );
+
+    exams =
+
+    snapshot.docs.map(item => ({
+
+        id:item.id,
+
+        ...item.data()
+
+    }));
+
+
+    exams.sort(
+
+        (a,b)=>
+
+        (a.examDate || "")
+        .localeCompare(
+
+            b.examDate || ""
+
+        )
+
+    );
+
+    render();
+
 }
 
-document.querySelector("#showForm").onclick = () => {
-  formCard.classList.remove("hidden");
+
+/* ==========================
+   RENDER
+========================== */
+
+function render(){
+
+    const keyword =
+
+    searchExam.value
+    .toLowerCase()
+    .trim();
+
+    const shown =
+
+    exams.filter(item=>
+
+        `${item.examName}
+        ${item.subject}
+        ${item.className}
+        ${item.section}`
+
+        .toLowerCase()
+
+        .includes(keyword)
+
+    );
+
+    examRows.innerHTML =
+
+    shown.length ?
+
+    shown.map(item=>`
+
+<tr>
+
+<td>
+
+${escapeText(item.examName)}
+
+</td>
+
+<td>
+
+${escapeText(item.subject)}
+
+</td>
+
+<td>
+
+Class
+${escapeText(item.className)}
+-
+${escapeText(item.section)}
+
+</td>
+
+<td>
+
+${item.examDate}
+
+</td>
+
+<td>
+
+${item.maxMarks}
+
+</td>
+
+<td>
+
+${escapeText(item.duration)}
+
+</td>
+
+</tr>
+
+`).join("")
+
+:
+
+`
+
+<tr>
+
+<td
+colspan="6"
+class="empty">
+
+No Exams Found.
+
+</td>
+
+</tr>
+
+`;
+
+    document.querySelector(
+        "#totalExams"
+    ).textContent =
+
+    exams.length;
+
+    document.querySelector(
+        "#upcomingExams"
+    ).textContent =
+
+    exams.filter(item=>
+
+        item.examDate >= today
+
+    ).length;
+
+    const subjects =
+
+    new Set(
+
+        exams.map(item=>
+
+            item.subject
+            .toLowerCase()
+
+        )
+
+    );
+
+    document.querySelector(
+        "#subjectsCount"
+    ).textContent =
+
+    subjects.size;
+
+}
+
+/* ==========================
+   FORM BUTTONS
+========================== */
+
+showFormButton.onclick = () => {
+
+    formCard.classList.remove(
+        "hidden"
+    );
+
 };
 
-document.querySelector("#closeForm").onclick = () => {
-  formCard.classList.add("hidden");
+closeFormButton.onclick = () => {
+
+    formCard.classList.add(
+        "hidden"
+    );
+
 };
 
-examForm.onsubmit = event => {
-  event.preventDefault();
 
-  exams.unshift({
-    examName: document.querySelector("#examName").value.trim(),
-    subject: document.querySelector("#subject").value.trim(),
-    className: document.querySelector("#className").value,
-    examDate: document.querySelector("#examDate").value,
-    maxMarks: document.querySelector("#maxMarks").value,
-    duration: document.querySelector("#duration").value.trim()
-  });
+/* ==========================
+   SAVE EXAM
+========================== */
 
-  localStorage.setItem(
-    "teacherExams",
-    JSON.stringify(exams)
-  );
+examForm.onsubmit = async event => {
 
-  examForm.reset();
-  formCard.classList.add("hidden");
+    event.preventDefault();
 
-  notice.textContent = "Exam saved successfully.";
+    const saveButton =
 
-  renderExams();
+    examForm.querySelector(
+
+        'button[type="submit"]'
+
+    );
+
+    saveButton.disabled = true;
+
+    saveButton.textContent =
+    "Saving...";
+
+    try{
+
+        await addDoc(
+
+            collection(
+                db,
+                "exams"
+            ),
+
+            {
+
+                examName:
+
+                document.querySelector(
+                    "#examName"
+                ).value.trim(),
+
+                subject:
+
+                document.querySelector(
+                    "#subject"
+                ).value.trim(),
+
+                className:
+
+                document.querySelector(
+                    "#className"
+                ).value,
+
+                section:
+
+                document.querySelector(
+                    "#section"
+                ).value,
+
+                examDate:
+
+                document.querySelector(
+                    "#examDate"
+                ).value,
+
+                maxMarks:
+
+                document.querySelector(
+                    "#maxMarks"
+                ).value,
+
+                duration:
+
+                document.querySelector(
+                    "#duration"
+                ).value.trim(),
+
+                teacherId:
+                auth.currentUser.uid,
+
+                teacherName:
+
+                teacher.teacherName ||
+
+                teacher.name ||
+
+                "Teacher",
+
+                createdAt:
+                serverTimestamp()
+
+            }
+
+        );
+
+        examForm.reset();
+
+        formCard.classList.add(
+            "hidden"
+        );
+
+        notice.textContent =
+        "Exam published successfully.";
+
+        await loadExams();
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        notice.textContent =
+        "Unable to save exam.";
+
+    }
+
+    finally{
+
+        saveButton.disabled = false;
+
+        saveButton.textContent =
+        "Save Exam";
+
+    }
+
 };
 
-document.querySelector("#searchExam").oninput = renderExams;
 
-renderExams();
+/* ==========================
+   SEARCH
+========================== */
+
+searchExam.oninput = render;
