@@ -3,8 +3,8 @@
 ========================================== */
 
 const AI_URL = "https://primeaihub-ai.adityapatil-171296.workers.dev/chat";
-const ROLE = "student";
-const CHAT_STORAGE_KEY = "primeai-chat";
+const ROLE = document.body.dataset.role || "student";
+const CHAT_STORAGE_KEY = document.body.dataset.storage || "primeai-chat";
 
 const chatArea = document.getElementById("chatArea");
 const input = document.getElementById("messageInput");
