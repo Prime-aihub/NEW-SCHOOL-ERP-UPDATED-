@@ -144,3 +144,145 @@ body{font-family:Poppins,sans-serif;background:radial-gradient(circle at top,#18
 .file-info{flex:1;min-width:0;}.file-name{font-weight:600;color:white;word-break:break-word;}.file-size{font-size:12px;color:#9bb6d8;margin-top:4px;}.file-preview{width:90px;border-radius:14px;margin-top:10px;display:block;}
 
 @media(max-width:768px){.chat-footer{padding:15px;}.chat-box{border-radius:35px;}.chat-box input{font-size:15px;}.send-btn{width:48px;height:48px;}.icon-btn{width:44px;height:44px;}}
+
+/* =====================================================
+   MOBILE SPACE OPTIMIZATION
+   APPEND THIS AT THE VERY END OF THE CSS
+=====================================================*/
+
+@media (max-width:768px){
+
+    /* Container */
+    .ai-container{
+        height:100dvh;
+    }
+
+    /* Smaller Header */
+    .ai-header{
+        height:64px;
+        padding:12px 16px;
+    }
+
+    .ai-header h2{
+        font-size:20px;
+    }
+
+    .ai-header p{
+        font-size:12px;
+        margin-top:2px;
+    }
+
+    /* Hero Section */
+    .robot-section{
+        padding:10px 15px 6px;
+        flex-shrink:0;
+    }
+
+    /* Hero Video */
+    .robot-video{
+        max-width:100%;
+        height:150px;
+        aspect-ratio:auto;
+        object-fit:cover;
+        margin:0 auto 10px;
+        border-radius:16px;
+    }
+
+    /* Welcome Title */
+    .robot-section h1{
+        font-size:2rem;
+        line-height:1.1;
+        margin:0;
+    }
+
+    /* Subtitle */
+    .robot-section p{
+        width:100%;
+        margin-top:6px;
+        font-size:15px;
+        line-height:1.5;
+    }
+
+    /* Chat should occupy remaining screen */
+    .chat-area{
+        flex:1;
+        padding:12px 14px;
+        gap:12px;
+        min-height:0;
+    }
+
+    /* Slightly wider bubbles */
+    .bubble{
+        max-width:88%;
+        padding:14px 16px;
+    }
+
+    /* Less bottom spacing */
+    .typing{
+        padding:0 15px 8px;
+    }
+
+    /* Compact footer */
+    .chat-footer{
+        padding:10px 12px calc(env(safe-area-inset-bottom) + 10px);
+        flex-shrink:0;
+    }
+
+    /* Smaller input */
+    .chat-box{
+        padding:6px;
+    }
+
+    .chat-box input{
+        height:50px;
+        font-size:15px;
+    }
+
+    .send-btn{
+        width:46px;
+        height:46px;
+    }
+
+    .icon-btn{
+        width:42px;
+        height:42px;
+    }
+
+}
+
+/* Extra optimisation for very small phones */
+
+@media (max-width:480px){
+
+    .robot-section{
+        padding:8px 12px 4px;
+    }
+
+    .robot-video{
+        height:135px;
+        margin-bottom:8px;
+    }
+
+    .robot-section h1{
+        font-size:1.8rem;
+    }
+
+    .robot-section p{
+        font-size:14px;
+        margin-top:4px;
+    }
+
+    .chat-area{
+        padding:10px;
+    }
+
+    .bubble{
+        max-width:92%;
+        font-size:14px;
+    }
+
+    .chat-footer{
+        padding:8px 10px calc(env(safe-area-inset-bottom) + 8px);
+    }
+
+}
