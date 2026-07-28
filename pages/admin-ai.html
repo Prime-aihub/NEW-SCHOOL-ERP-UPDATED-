@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolSevak AI</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="ai.css">
+</head>
+<body>
+
+<div id="loadingScreen">
+    <video autoplay muted playsinline>
+        <source src="../pages/media/frank1.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div class="background-glow"></div>
+
+<div class="ai-container">
+
+<header class="ai-header">
+
+<button class="back-btn" type="button"
+aria-label="Go back"
+onclick="window.location.href='../admin-dashboard.html'">
+<i class="fa-solid fa-arrow-left"></i>
+</button>
+
+<div>
+<h2>SchoolSevak AI</h2>
+<p>Your School Administration Assistant</p>
+</div>
+
+<div class="header-actions">
+
+<button id="newChatBtn" class="menu-btn" type="button">
+<i class="fa-solid fa-pen-to-square"></i>
+</button>
+
+<button class="menu-btn" type="button">
+<i class="fa-solid fa-ellipsis-vertical"></i>
+</button>
+
+</div>
+
+</header>
+
+<section class="robot-section">
+
+<video class="robot-video" autoplay muted loop playsinline>
+<source src="../pages/media/frank1.mp4" type="video/mp4">
+</video>
+
+<h1>Hello Admin 👋</h1>
+
+<p>
+I'm SchoolSevak AI, your smart school administration assistant.
+Ask me about admissions, attendance, fees, reports, ERP management,
+staff records, notices and school operations.
+</p>
+
+</section>
+
+<section id="chatArea" class="chat-area">
+
+<div class="message ai">
+<div class="avatar">🤖</div>
+<div class="bubble">
+Hello! How can I assist you with school administration today?
+</div>
+</div>
+
+</section>
+
+<div id="typing" class="typing">
+<span></span><span></span><span></span>
+</div>
+
+<footer class="chat-footer">
+
+<div class="chat-box">
+
+<button id="attachBtn" class="icon-btn">
+<i class="fa-solid fa-plus"></i>
+</button>
+
+<input
+id="messageInput"
+type="text"
+placeholder="Ask about school management..."
+autocomplete="off">
+
+<button id="voiceBtn" class="icon-btn">
+<i class="fa-solid fa-microphone"></i>
+</button>
+
+<button id="sendBtn" class="send-btn">
+<i class="fa-solid fa-arrow-up"></i>
+</button>
+
+</div>
+
+</footer>
+
+</div>
+
+<input type="file" id="fileInput" accept=".pdf,.png,.jpg,.jpeg,.webp" hidden>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+<script src="ai.js"></script>
+
+</body>
+</html>

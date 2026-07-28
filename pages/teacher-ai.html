@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VidyaDesk AI</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<link rel="stylesheet" href="ai.css">
+</head>
+
+<body>
+
+<div id="loadingScreen">
+<video autoplay muted playsinline>
+<source src="../pages/media/frank1.mp4" type="video/mp4">
+</video>
+</div>
+
+<div class="background-glow"></div>
+
+<div class="ai-container">
+
+<header class="ai-header">
+
+<button class="back-btn"
+type="button"
+aria-label="Go back"
+onclick="window.location.href='../teacher-dashboard.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+</button>
+
+<div>
+
+<h2>VidyaDesk AI</h2>
+<p>Your AI Teaching Assistant</p>
+
+</div>
+
+<div class="header-actions">
+
+<button id="newChatBtn" class="menu-btn">
+<i class="fa-solid fa-pen-to-square"></i>
+</button>
+
+<button class="menu-btn">
+<i class="fa-solid fa-ellipsis-vertical"></i>
+</button>
+
+</div>
+
+</header>
+
+<section class="robot-section">
+
+<video class="robot-video" autoplay muted loop playsinline>
+<source src="../pages/media/frank1.mp4" type="video/mp4">
+</video>
+
+<h1>Hello Teacher 👋</h1>
+
+<p>
+I'm VidyaDesk AI, your intelligent teaching assistant.
+Ask me to create lesson plans, worksheets, homework,
+question papers, classroom activities and teaching resources.
+</p>
+
+</section>
+
+<section id="chatArea" class="chat-area">
+
+<div class="message ai">
+<div class="avatar">🤖</div>
+<div class="bubble">
+Hello! How can I help you with teaching today?
+</div>
+</div>
+
+</section>
+
+<div id="typing" class="typing">
+<span></span><span></span><span></span>
+</div>
+
+<footer class="chat-footer">
+
+<div class="chat-box">
+
+<button id="attachBtn" class="icon-btn">
+<i class="fa-solid fa-plus"></i>
+</button>
+
+<input
+id="messageInput"
+type="text"
+placeholder="Ask about teaching..."
+autocomplete="off">
+
+<button id="voiceBtn" class="icon-btn">
+<i class="fa-solid fa-microphone"></i>
+</button>
+
+<button id="sendBtn" class="send-btn">
+<i class="fa-solid fa-arrow-up"></i>
+</button>
+
+</div>
+
+</footer>
+
+</div>
+
+<input type="file" id="fileInput" accept=".pdf,.png,.jpg,.jpeg,.webp" hidden>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+<script src="ai.js"></script>
+
+</body>
+</html>
