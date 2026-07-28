@@ -357,6 +357,6 @@ window.addEventListener("load",()=>{
             .getElementById("loadingScreen")
             .classList.add("hide");
 
-    },2000);
+    },5000);
 
 });
