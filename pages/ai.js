@@ -348,3 +348,15 @@ function startNewChat() {
     scrollBottom();
 
 }
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document
+            .getElementById("loadingScreen")
+            .classList.add("hide");
+
+    },2000);
+
+});
