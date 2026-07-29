@@ -19,7 +19,9 @@
     --transition:.35s;
 }
 
-body{font-family:Poppins,sans-serif;background:radial-gradient(circle at top,#18234d,#070b18 45%,#03040c);color:var(--white);min-height:100vh;overflow:hidden;}
+body{font-family:Poppins,sans-serif;background:radial-gradient(circle at top,#18234d,#070b18 45%,#03040c);color:var(--white);min-height:100vh;overflow:hidden;padding-top: 24px;
+    box-sizing: border-box;
+}
 .background-glow{position:fixed;inset:0;overflow:hidden;z-index:-1;}
 .background-glow::before,.background-glow::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(140px);}
 .background-glow::before{background:var(--cyan);opacity:.18;left:-120px;top:-80px;animation:glowOne 12s ease-in-out infinite;}
