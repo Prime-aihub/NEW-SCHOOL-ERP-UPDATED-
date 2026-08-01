@@ -11,7 +11,7 @@
     body{
         width:100%;
         overflow-x:hidden;
-        padding-top:32px;      /* Move page below Android status bar */
+        padding-top:12px;      /* Move page below Android status bar */
         box-sizing:border-box;
     }
 
@@ -49,7 +49,7 @@
 
 body{
 
-padding-top:calc(32px + env(safe-area-inset-top));
+padding-top:calc(12px + env(safe-area-inset-top));
 
 }
 
