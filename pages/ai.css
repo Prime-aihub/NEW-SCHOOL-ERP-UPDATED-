@@ -126,7 +126,7 @@ body{font-family:Poppins,sans-serif;background:radial-gradient(circle at top,#18
 .message.user .time{color:rgba(255,255,255,.72);}
 
 .chat-footer{
-    padding:18px 20px 10px;
+    padding:18px 20px 20px;
     background:transparent;
     transform:none;
 }
@@ -180,7 +180,7 @@ body{font-family:Poppins,sans-serif;background:radial-gradient(circle at top,#18
 @media (max-width:768px){
 
     .chat-footer{
-        transform:translateY(-5px);
+        transform:translateY(-28px);
         padding-bottom:75px;
     }
 
