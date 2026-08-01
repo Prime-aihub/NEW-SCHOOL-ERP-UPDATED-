@@ -180,7 +180,7 @@ body{font-family:Poppins,sans-serif;background:radial-gradient(circle at top,#18
 @media (max-width:768px){
 
     .chat-footer{
-        transform:translateY(-28px);
+        transform:translateY(-20px);
         padding-bottom:75px;
     }
 
