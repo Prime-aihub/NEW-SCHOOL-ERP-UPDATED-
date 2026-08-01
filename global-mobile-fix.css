@@ -1,0 +1,80 @@
+/* =====================================================
+   MAIAMMA ERP
+   GLOBAL MOBILE / APK FIX
+   APPEND ONLY - DOES NOT MODIFY EXISTING DESIGN
+   ===================================================== */
+
+@media screen and (max-width:900px){
+
+    /* Prevent horizontal scrolling */
+    html,
+    body{
+        width:100%;
+        overflow-x:hidden;
+        padding-top:32px;      /* Move page below Android status bar */
+        box-sizing:border-box;
+    }
+
+    *,
+    *::before,
+    *::after{
+        box-sizing:border-box;
+    }
+
+    img{
+        max-width:100%;
+        height:auto;
+    }
+
+    section,
+    header,
+    main,
+    footer{
+        max-width:100%;
+    }
+
+    iframe,
+    video,
+    canvas{
+        max-width:100%;
+    }
+
+}
+
+/* =====================================================
+   ANDROID SAFE AREA SUPPORT
+   ===================================================== */
+
+@supports (padding-top: env(safe-area-inset-top)){
+
+body{
+
+padding-top:calc(32px + env(safe-area-inset-top));
+
+}
+
+}
+
+/* =====================================================
+   FIX FIXED NAVBAR OVERLAP
+   Only applies if navbar is fixed
+   ===================================================== */
+
+header,
+.navbar,
+.topbar,
+.top-header{
+
+padding-top:env(safe-area-inset-top);
+
+}
+
+/* =====================================================
+   Prevent accidental horizontal overflow
+   ===================================================== */
+
+body{
+
+overflow-x:hidden;
+
+}
