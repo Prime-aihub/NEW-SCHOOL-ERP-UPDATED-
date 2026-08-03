@@ -128,13 +128,13 @@
 <img src="images/screenshots/student-dashboard.png" width="48%">
 <img src="images/screenshots/teacher-dashboard.png" width="48%">
 
-<img src="images/screenshots/admin-dashboard.png" width="48%">
-<img src="images/screenshots/calendar.png" width="48%">
-<img src="images/screenshots/student-menu.png" width="48%">
-<img src="images/screenshots/teacher-menu.png" width="48%">
-<img src="images/screenshots/ai.png" width="48%">
-<img src="images/screenshots/quiz.png" width="48%">
-<img src="images/screenshots/store.png" width="48%">
+<img src="images/screenshots/admin-dashboard.jpg" width="48%">
+<img src="images/screenshots/calendar.jpg" width="48%">
+<img src="images/screenshots/student-menu.jpg" width="48%">
+<img src="images/screenshots/teacher-menu.jpg" width="48%">
+<img src="images/screenshots/ai.jpg" width="48%">
+<img src="images/screenshots/quiz.jpg" width="48%">
+<img src="images/screenshots/store.jpg" width="48%">
 
 </p>
 
