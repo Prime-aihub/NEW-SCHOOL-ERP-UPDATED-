@@ -77,13 +77,7 @@ async function askAI(role, message) {
         const response = await fetch(AI_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-           body: JSON.stringify({
-
-    role,
-    message,
-    attachment: selectedAttachment
-
-})
+            body: JSON.stringify({ role, message })
         });
 
         if (!response.ok) throw new Error(`Request failed with ${response.status}`);
@@ -274,29 +268,9 @@ function speak(text) {
 /* ---------- Files ---------- */
 
 function handleFileSelection() {
-
-    const file = fileInput.files[0];
-
-    if (!file) return;
-
-    showFile(file);
-
-    const reader = new FileReader();
-
-    reader.onload = () => {
-
-        selectedAttachment = {
-
-            filename: file.name,
-            mimeType: file.type,
-            data: reader.result.split(",")[1]
-
-        };
-
-    };
-
-    reader.readAsDataURL(file);
-
+    const file = fileInput.files && fileInput.files[0];
+    if (file) showFile(file);
+    fileInput.value = ""; // Selecting the same file again should still trigger a preview.
 }
 
 function showFile(file) {
@@ -384,41 +358,5 @@ window.addEventListener("load",()=>{
             .classList.add("hide");
 
     },5000);
-
-});
-
-/* ==========================================
-   AI ATTACHMENT SUPPORT
-   APPEND ONLY
-========================================== */
-
-let selectedAttachment = null;
-
-
-fileInput.addEventListener("change", async () => {
-
-    const file = fileInput.files[0];
-
-    if (!file) return;
-
-    const reader = new FileReader();
-
-    reader.onload = () => {
-
-        selectedAttachment = {
-
-            filename: file.name,
-
-            mimeType: file.type,
-
-            data: reader.result.split(",")[1]
-
-        };
-
-        showToast("📎 " + file.name + " attached");
-
-    };
-
-    reader.readAsDataURL(file);
 
 });
