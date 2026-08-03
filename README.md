@@ -4,7 +4,7 @@
 
 ### 🚀 One Platform. One Login. Complete School Ecosystem.
 
-<img src="images/banner.png" width="100%" alt="MAIAMMA School ERP Banner">
+<img src="images/screenshots/banner.png" width="100%" alt="MAIAMMA School ERP Banner">
 
 <br>
 
