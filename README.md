@@ -125,16 +125,16 @@
 
 <p align="center">
 
-<img src="images/student-dashboard.png" width="48%">
-<img src="images/teacher-dashboard.png" width="48%">
+<img src="images/screenshots/student-dashboard.png" width="48%">
+<img src="images/screenshots/teacher-dashboard.png" width="48%">
 
-<img src="images/admin-dashboard.png" width="48%">
-<img src="images/calendar.png" width="48%">
-<img src="images/student-menu.png" width="48%">
-<img src="images/teacher-menu.png" width="48%">
-<img src="images/ai.png" width="48%">
-<img src="images/quiz.png" width="48%">
-<img src="images/store.png" width="48%">
+<img src="images/screenshots/admin-dashboard.png" width="48%">
+<img src="images/screenshots/calendar.png" width="48%">
+<img src="images/screenshots/student-menu.png" width="48%">
+<img src="images/screenshots/teacher-menu.png" width="48%">
+<img src="images/screenshots/ai.png" width="48%">
+<img src="images/screenshots/quiz.png" width="48%">
+<img src="images/screenshots/store.png" width="48%">
 
 </p>
 
