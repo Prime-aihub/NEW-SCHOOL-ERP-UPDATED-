@@ -4,7 +4,7 @@
 
 ### 🚀 One Platform. One Login. Complete School Ecosystem.
 
-<img src="assets/banner.png" width="100%" alt="MAIAMMA School ERP Banner">
+<img src="images/banner.png" width="100%" alt="MAIAMMA School ERP Banner">
 
 <br>
 
@@ -125,14 +125,16 @@
 
 <p align="center">
 
-<img src="screenshots/student-dashboard.png" width="48%">
-<img src="screenshots/teacher-dashboard.png" width="48%">
+<img src="images/student-dashboard.png" width="48%">
+<img src="images/teacher-dashboard.png" width="48%">
 
-<img src="screenshots/admin-dashboard.png" width="48%">
-<img src="screenshots/calendar.png" width="48%">
-
-<img src="screenshots/quiz.png" width="48%">
-<img src="screenshots/store.png" width="48%">
+<img src="images/admin-dashboard.png" width="48%">
+<img src="images/calendar.png" width="48%">
+<img src="images/student-menu.png" width="48%">
+<img src="images/teacher-menu.png" width="48%">
+<img src="images/ai.png" width="48%">
+<img src="images/quiz.png" width="48%">
+<img src="images/store.png" width="48%">
 
 </p>
 
