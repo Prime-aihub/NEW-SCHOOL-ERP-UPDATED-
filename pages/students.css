@@ -188,13 +188,8 @@ ACTION BUTTONS
 }
 
 /* =========================================================
-   MOBILE RESPONSIVE FIX - STUDENT / ADD STUDENT PAGE
-   Append this at the END of the existing CSS
+   STUDENT MANAGEMENT - MOBILE FIX
    ========================================================= */
-
-* {
-    box-sizing: border-box;
-}
 
 html,
 body {
@@ -202,165 +197,119 @@ body {
     overflow-x: hidden;
 }
 
-/* Prevent wide containers from breaking mobile screens */
-.container,
-.admin-container,
-.student-container,
-.content,
-.main-content {
+.dashboard-card {
     max-width: 100%;
 }
 
-/* =========================
-   MOBILE DEVICES
-   ========================= */
+/* Search box */
+#searchStudent {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* Table wrapper */
+.student-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Keep table readable instead of crushing 6 columns */
+.student-table-wrapper .admin-table {
+    min-width: 850px;
+    width: 100%;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media screen and (max-width: 768px) {
 
-    body {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
+    .dashboard-card {
+        margin: 15px !important;
+        width: calc(100% - 30px);
+        max-width: calc(100% - 30px);
+        box-sizing: border-box;
     }
 
-    /* Student heading */
     .student-header {
-        width: 100%;
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 12px;
-        margin-bottom: 15px;
+        margin-bottom: 18px;
     }
 
-    .student-header h1,
-    .student-header h2,
-    .student-header h3 {
-        max-width: 100%;
-        font-size: 26px;
-        line-height: 1.2;
-        word-break: break-word;
+    .student-header h2 {
+        font-size: 24px;
+        line-height: 1.25;
+        margin: 0;
+        word-break: normal;
     }
 
     .add-btn {
         width: 100%;
+        box-sizing: border-box;
         text-align: center;
+        display: block;
         padding: 12px 15px;
     }
 
-    /* =========================
-       ADD STUDENT FORM
-       ========================= */
-
-    form {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    form input,
-    form select,
-    form textarea {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
+    #searchStudent {
+        width: 100% !important;
+        height: 46px;
+        padding: 10px 12px !important;
+        margin-bottom: 15px !important;
         font-size: 16px;
-        padding: 12px;
     }
 
-    form button {
-        max-width: 100%;
-    }
-
-    /* Form rows that use columns */
-    .form-row {
+    .student-table-wrapper {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
+        overflow-x: auto;
+        border-radius: 6px;
     }
 
-    .form-group {
-        width: 100%;
-        max-width: 100%;
+    .student-table-wrapper .admin-table {
+        min-width: 850px;
+        width: 850px;
     }
 
-    /* =========================
-       TABLE MOBILE FIX
-       ========================= */
-
-    .admin-table {
-        width: 100%;
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .admin-table table {
-        width: 100%;
-        table-layout: fixed;
-    }
-
-    .admin-table th,
-    .admin-table td {
+    .student-table-wrapper th,
+    .student-table-wrapper td {
         padding: 12px 10px;
         font-size: 14px;
-        word-break: break-word;
-    }
-
-    .admin-table th {
-        font-size: 14px;
-    }
-
-    /* Hide less-important columns if classes exist */
-    .admin-table .mobile-hide {
-        display: none;
-    }
-
-    /* Action buttons */
-    .view-btn,
-    .edit-btn,
-    .delete-btn {
-        padding: 7px 8px;
-        margin-right: 3px;
-        margin-bottom: 4px;
-        font-size: 13px;
+        white-space: nowrap;
     }
 
 }
 
-/* =========================
-   SMALL PHONES
-   ========================= */
+/* =========================================================
+   SMALL ANDROID PHONES
+   ========================================================= */
 
 @media screen and (max-width: 480px) {
 
-    .student-header h1,
-    .student-header h2,
-    .student-header h3 {
-        font-size: 22px;
+    .dashboard-card {
+        margin: 10px !important;
+        width: calc(100% - 20px);
+        max-width: calc(100% - 20px);
     }
 
-    th,
-    td {
-        padding: 10px 8px;
+    .student-header h2 {
+        font-size: 21px;
+    }
+
+    .student-table-wrapper .admin-table {
+        min-width: 800px;
+        width: 800px;
+    }
+
+    .student-table-wrapper th,
+    .student-table-wrapper td {
+        padding: 10px 9px;
         font-size: 13px;
-    }
-
-    .admin-table th,
-    .admin-table td {
-        padding: 10px 7px;
-        font-size: 13px;
-    }
-
-    .add-btn {
-        font-size: 14px;
-        padding: 11px 12px;
-    }
-
-    form input,
-    form select,
-    form textarea {
-        font-size: 16px;
-        padding: 11px;
     }
 
 }
