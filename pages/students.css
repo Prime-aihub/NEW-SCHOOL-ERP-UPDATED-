@@ -186,3 +186,181 @@ ACTION BUTTONS
     background:#dc2626;
 
 }
+
+/* =========================================================
+   MOBILE RESPONSIVE FIX - STUDENT / ADD STUDENT PAGE
+   Append this at the END of the existing CSS
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Prevent wide containers from breaking mobile screens */
+.container,
+.admin-container,
+.student-container,
+.content,
+.main-content {
+    max-width: 100%;
+}
+
+/* =========================
+   MOBILE DEVICES
+   ========================= */
+
+@media screen and (max-width: 768px) {
+
+    body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* Student heading */
+    .student-header {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+
+    .student-header h1,
+    .student-header h2,
+    .student-header h3 {
+        max-width: 100%;
+        font-size: 26px;
+        line-height: 1.2;
+        word-break: break-word;
+    }
+
+    .add-btn {
+        width: 100%;
+        text-align: center;
+        padding: 12px 15px;
+    }
+
+    /* =========================
+       ADD STUDENT FORM
+       ========================= */
+
+    form {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    form input,
+    form select,
+    form textarea {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    form button {
+        max-width: 100%;
+    }
+
+    /* Form rows that use columns */
+    .form-row {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .form-group {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* =========================
+       TABLE MOBILE FIX
+       ========================= */
+
+    .admin-table {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .admin-table table {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 12px 10px;
+        font-size: 14px;
+        word-break: break-word;
+    }
+
+    .admin-table th {
+        font-size: 14px;
+    }
+
+    /* Hide less-important columns if classes exist */
+    .admin-table .mobile-hide {
+        display: none;
+    }
+
+    /* Action buttons */
+    .view-btn,
+    .edit-btn,
+    .delete-btn {
+        padding: 7px 8px;
+        margin-right: 3px;
+        margin-bottom: 4px;
+        font-size: 13px;
+    }
+
+}
+
+/* =========================
+   SMALL PHONES
+   ========================= */
+
+@media screen and (max-width: 480px) {
+
+    .student-header h1,
+    .student-header h2,
+    .student-header h3 {
+        font-size: 22px;
+    }
+
+    th,
+    td {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 10px 7px;
+        font-size: 13px;
+    }
+
+    .add-btn {
+        font-size: 14px;
+        padding: 11px 12px;
+    }
+
+    form input,
+    form select,
+    form textarea {
+        font-size: 16px;
+        padding: 11px;
+    }
+
+}
